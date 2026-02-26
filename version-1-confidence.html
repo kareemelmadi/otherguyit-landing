@@ -37,11 +37,28 @@
             top: 0; left: 0;
             width: 100%; height: 100%;
             background-image:
-                linear-gradient(rgba(0, 229, 160, 0.025) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 229, 160, 0.025) 1px, transparent 1px);
+                linear-gradient(rgba(192, 206, 220, 0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(192, 206, 220, 0.06) 1px, transparent 1px);
             background-size: 60px 60px;
             z-index: 0;
             pointer-events: none;
+            animation: grid-drift 20s linear infinite;
+        }
+
+        @keyframes grid-drift {
+            0% { background-position: 0 0, 0 0; }
+            100% { background-position: 60px 60px, 60px 60px; }
+        }
+
+        .grid-bg::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image:
+                linear-gradient(rgba(192, 206, 220, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(192, 206, 220, 0.03) 1px, transparent 1px);
+            background-size: 15px 15px;
         }
 
         .grid-bg::after {
@@ -49,7 +66,68 @@
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: radial-gradient(ellipse at 50% 0%, rgba(0, 229, 160, 0.06) 0%, transparent 60%);
+            background:
+                radial-gradient(ellipse at 30% 10%, rgba(0, 229, 160, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 60%, rgba(0, 160, 229, 0.05) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 0%, rgba(192, 206, 220, 0.06) 0%, transparent 40%);
+        }
+
+        /* ── Floating orbs ── */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(80px);
+        }
+
+        .orb-1 {
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(0, 229, 160, 0.08) 0%, transparent 70%);
+            top: -150px; right: -100px;
+            animation: float-1 18s ease-in-out infinite;
+        }
+
+        .orb-2 {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(0, 160, 229, 0.06) 0%, transparent 70%);
+            bottom: 10%; left: -100px;
+            animation: float-2 22s ease-in-out infinite;
+        }
+
+        .orb-3 {
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(255, 111, 60, 0.04) 0%, transparent 70%);
+            top: 40%; right: 10%;
+            animation: float-3 15s ease-in-out infinite;
+        }
+
+        @keyframes float-1 {
+            0%, 100% { transform: translate(0, 0); }
+            33% { transform: translate(-40px, 30px); }
+            66% { transform: translate(20px, -20px); }
+        }
+
+        @keyframes float-2 {
+            0%, 100% { transform: translate(0, 0); }
+            33% { transform: translate(30px, -40px); }
+            66% { transform: translate(-20px, 20px); }
+        }
+
+        @keyframes float-3 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-30px, 30px); }
+        }
+
+        /* ── Noise texture overlay ── */
+        .noise {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.035;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
         }
 
         /* ── Navigation ── */
@@ -57,7 +135,7 @@
             position: fixed;
             top: 0; left: 0;
             width: 100%;
-            z-index: 100;
+            z-index: 200;
             padding: 1rem 2rem;
             transition: all 0.4s ease;
         }
@@ -218,14 +296,19 @@
             border-radius: 16px;
             overflow: hidden;
             box-shadow:
-                0 0 0 1px rgba(0, 229, 160, 0.08),
+                0 0 0 1px rgba(0, 229, 160, 0.1),
+                0 0 30px rgba(0, 229, 160, 0.06),
                 0 40px 100px rgba(0, 0, 0, 0.5);
             transform: perspective(1200px) rotateY(-3deg) rotateX(2deg);
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .terminal:hover {
             transform: perspective(1200px) rotateY(0deg) rotateX(0deg);
+            box-shadow:
+                0 0 0 1px rgba(0, 229, 160, 0.15),
+                0 0 60px rgba(0, 229, 160, 0.1),
+                0 40px 100px rgba(0, 0, 0, 0.5);
         }
 
         .terminal-bar {
@@ -269,7 +352,7 @@
         }
 
         /* ── Shared section styles ── */
-        section { position: relative; z-index: 2; }
+        section { position: relative; z-index: 3; }
         .section-pad { padding: 6rem 2rem; }
         .container { max-width: 1200px; margin: 0 auto; }
 
@@ -306,8 +389,10 @@
         }
 
         .service-card {
-            background: rgba(17, 35, 71, 0.5);
-            border: 1px solid rgba(0, 229, 160, 0.06);
+            background: rgba(17, 35, 71, 0.35);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(192, 206, 220, 0.06);
             border-radius: 16px;
             padding: 2rem;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -320,18 +405,32 @@
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 3px;
-            background: linear-gradient(90deg, var(--electric), transparent);
+            background: linear-gradient(90deg, var(--electric), rgba(0, 160, 229, 0.5), transparent);
             opacity: 0;
             transition: opacity 0.4s;
         }
 
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle at center, rgba(0, 229, 160, 0.03) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+        }
+
         .service-card:hover::before { opacity: 1; }
+        .service-card:hover::after { opacity: 1; }
 
         .service-card:hover {
-            background: rgba(17, 35, 71, 0.8);
-            border-color: rgba(0, 229, 160, 0.15);
-            transform: translateY(-4px);
-            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+            background: rgba(17, 35, 71, 0.55);
+            border-color: rgba(0, 229, 160, 0.12);
+            transform: translateY(-6px);
+            box-shadow:
+                0 16px 48px rgba(0, 0, 0, 0.2),
+                0 0 40px rgba(0, 229, 160, 0.04);
         }
 
         .service-icon {
@@ -413,9 +512,21 @@
 
         /* ── Stats bar ── */
         .stats-bar {
-            background: rgba(0, 229, 160, 0.03);
-            border-top: 1px solid rgba(0, 229, 160, 0.08);
-            border-bottom: 1px solid rgba(0, 229, 160, 0.08);
+            background:
+                linear-gradient(90deg, rgba(0, 229, 160, 0.02), rgba(0, 229, 160, 0.05), rgba(0, 229, 160, 0.02));
+            border-top: 1px solid rgba(192, 206, 220, 0.06);
+            border-bottom: 1px solid rgba(192, 206, 220, 0.06);
+            position: relative;
+        }
+
+        .stats-bar::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 229, 160, 0.3), transparent);
         }
 
         .stats-grid {
@@ -449,16 +560,19 @@
         }
 
         .testimonial-card {
-            background: rgba(17, 35, 71, 0.35);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(17, 35, 71, 0.3);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(192, 206, 220, 0.05);
             border-radius: 16px;
             padding: 2rem;
-            transition: all 0.3s;
+            transition: all 0.4s;
         }
 
         .testimonial-card:hover {
             border-color: rgba(0, 229, 160, 0.12);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
         }
 
         .testimonial-card .stars {
@@ -508,10 +622,22 @@
         .cta-section { text-align: center; }
 
         .cta-box {
-            background: linear-gradient(135deg, rgba(0, 229, 160, 0.06) 0%, rgba(255, 111, 60, 0.04) 100%);
+            background: linear-gradient(135deg, rgba(0, 229, 160, 0.06) 0%, rgba(0, 160, 229, 0.04) 50%, rgba(255, 111, 60, 0.03) 100%);
             border: 1px solid rgba(0, 229, 160, 0.12);
             border-radius: 24px;
             padding: 4rem 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-box::before {
+            content: '';
+            position: absolute;
+            top: -100px; left: 50%;
+            transform: translateX(-50%);
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(0, 229, 160, 0.08) 0%, transparent 70%);
+            pointer-events: none;
         }
 
         .cta-box h2 { margin-bottom: 1rem; }
@@ -531,7 +657,7 @@
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             padding: 2.5rem 2rem;
             position: relative;
-            z-index: 2;
+            z-index: 3;
         }
 
         .footer-inner {
@@ -599,6 +725,10 @@
 </head>
 <body>
     <div class="grid-bg"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="noise"></div>
 
     <!-- Nav -->
     <nav id="navbar">
