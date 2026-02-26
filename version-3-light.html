@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Other Guys IT — Managed IT for Texas Businesses</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800&family=Fraunces:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --white: #FFFFFF;
+            --snow: #FAFBFC;
+            --ice: #F2F4F7;
+            --border: #E4E7EC;
+            --border-light: #EBEEF2;
+            --text: #1A1D26;
+            --text-mid: #444B59;
+            --text-light: #6B7280;
+            --blue: #1B5FED;
+            --blue-dark: #1550CC;
+            --blue-light: #EEF3FF;
+            --blue-glow: rgba(27, 95, 237, 0.08);
+            --green: #059669;
+            --green-light: #ECFDF5;
+            --amber: #D97706;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--white);
+            color: var(--text);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Navigation ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 0.9rem 2rem;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s;
+        }
+
+        nav.scrolled {
+            border-bottom-color: var(--border);
+        }
+
+        .nav-inner {
+            max-width: 1140px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo svg { height: 36px; width: auto; }
+
+        /* Darken the logo for light backgrounds */
+        .nav-logo svg path[fill="#fff"],
+        .nav-logo svg rect[fill="#fff"] {
+            fill: var(--text);
+        }
+
+        .logo-dark path, .logo-dark rect { fill: var(--text) !important; }
+        .logo-dark .logo-mark path { fill: url(#lg-dark) !important; }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--blue); }
+
+        .btn-blue {
+            background: var(--blue);
+            color: #fff;
+            padding: 0.65rem 1.4rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.88rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-blue:hover {
+            background: var(--blue-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px rgba(27, 95, 237, 0.2);
+        }
+
+        .btn-white {
+            background: var(--white);
+            color: var(--text);
+            border: 1.5px solid var(--border);
+            padding: 0.65rem 1.4rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            transition: all 0.3s;
+        }
+
+        .btn-white:hover {
+            border-color: var(--blue);
+            color: var(--blue);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+        }
+
+        /* ── Hero ── */
+        .hero {
+            padding: 8rem 2rem 5rem;
+            text-align: center;
+            background:
+                radial-gradient(ellipse at 50% -20%, var(--blue-glow) 0%, transparent 60%),
+                var(--white);
+        }
+
+        .hero-inner {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .hero-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--blue-light);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: var(--blue);
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .hero-chip svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .hero h1 {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2.8rem, 6vw, 4rem);
+            font-weight: 800;
+            line-height: 1.12;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .hero h1 .blue { color: var(--blue); }
+
+        .hero-desc {
+            font-size: 1.12rem;
+            color: var(--text-light);
+            line-height: 1.75;
+            max-width: 560px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3.5rem;
+        }
+
+        .hero-ctas .btn-blue {
+            padding: 0.8rem 1.8rem;
+            font-size: 0.95rem;
+        }
+
+        .hero-ctas .btn-white {
+            padding: 0.8rem 1.8rem;
+            font-size: 0.95rem;
+        }
+
+        /* ── Logo mark in hero ── */
+        .hero-logo-mark {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .hero-logo-mark svg {
+            height: 60px;
+            width: auto;
+            opacity: 0.08;
+        }
+
+        /* ── Trust strip ── */
+        .trust-strip {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3rem;
+            padding: 2rem 0;
+        }
+
+        .trust-stat { text-align: center; }
+
+        .trust-val {
+            font-family: 'Fraunces', serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--text);
+        }
+
+        .trust-lbl {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-top: 0.15rem;
+            font-weight: 500;
+        }
+
+        /* ── Section shared ── */
+        section { position: relative; }
+        .section-pad { padding: 5rem 2rem; }
+        .container { max-width: 1140px; margin: 0 auto; }
+
+        .section-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--blue);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            margin-bottom: 0.75rem;
+            line-height: 1.15;
+        }
+
+        .section-desc {
+            color: var(--text-light);
+            font-size: 1rem;
+            max-width: 520px;
+            line-height: 1.7;
+        }
+
+        /* ── Problem/Solution ── */
+        .ps-section {
+            background: var(--snow);
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .ps-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+
+        .ps-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+        }
+
+        .ps-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .ps-card.problem h3 { color: #DC2626; }
+        .ps-card.solution h3 { color: var(--green); }
+
+        .ps-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .ps-list li {
+            display: flex;
+            gap: 0.65rem;
+            font-size: 0.9rem;
+            line-height: 1.55;
+            color: var(--text-mid);
+        }
+
+        .ps-list li .icon { font-size: 1rem; min-width: 20px; }
+
+        /* ── Services ── */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            margin-top: 2.5rem;
+        }
+
+        .svc-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.75rem;
+            transition: all 0.3s;
+        }
+
+        .svc-card:hover {
+            border-color: var(--blue);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.06);
+        }
+
+        .svc-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: var(--blue-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .svc-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .svc-card p {
+            color: var(--text-light);
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+
+        /* ── How it works ── */
+        .how-section {
+            background: var(--snow);
+            border-top: 1px solid var(--border-light);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-num {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--blue);
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Fraunces', serif;
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .step h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .step p {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* ── Stats ── */
+        .stats-section {
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .stat-val {
+            font-family: 'Fraunces', serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--blue);
+        }
+
+        .stat-lbl {
+            color: var(--text-light);
+            font-size: 0.82rem;
+            margin-top: 0.2rem;
+            font-weight: 500;
+        }
+
+        /* ── Testimonials ── */
+        .testi-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            margin-top: 2.5rem;
+        }
+
+        .testi-card {
+            background: var(--snow);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.75rem;
+        }
+
+        .testi-card .stars {
+            color: #F59E0B;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            margin-bottom: 0.75rem;
+        }
+
+        .testi-card blockquote {
+            font-family: 'Fraunces', serif;
+            font-style: italic;
+            color: var(--text-mid);
+            font-size: 0.95rem;
+            line-height: 1.65;
+            margin-bottom: 1.25rem;
+        }
+
+        .testi-card blockquote strong {
+            color: var(--blue);
+            font-style: normal;
+        }
+
+        .t-footer {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+        }
+
+        .t-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.75rem;
+        }
+
+        .t-name { font-weight: 700; font-size: 0.85rem; color: var(--text); }
+        .t-role { font-size: 0.78rem; color: var(--text-light); }
+
+        /* ── CTA ── */
+        .cta-section {
+            text-align: center;
+            background:
+                radial-gradient(ellipse at 50% 100%, var(--blue-glow) 0%, transparent 60%),
+                var(--white);
+        }
+
+        .cta-box {
+            background: var(--snow);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 3.5rem 2.5rem;
+        }
+
+        .cta-box p {
+            color: var(--text-light);
+            font-size: 1rem;
+            max-width: 480px;
+            margin: 0 auto 2rem;
+            line-height: 1.7;
+        }
+
+        /* ── Footer ── */
+        footer {
+            background: var(--snow);
+            border-top: 1px solid var(--border);
+            padding: 2.5rem 2rem;
+        }
+
+        .footer-inner {
+            max-width: 1140px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo svg { height: 24px; width: auto; opacity: 0.3; }
+
+        .footer-copy { color: var(--text-light); font-size: 0.8rem; margin-top: 0.4rem; }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover { color: var(--blue); }
+
+        /* ── Animations ── */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.7s ease forwards;
+        }
+
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .d1 { animation-delay: 0.1s; }
+        .d2 { animation-delay: 0.2s; }
+        .d3 { animation-delay: 0.3s; }
+        .d4 { animation-delay: 0.4s; }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .ps-grid, .services-grid, .steps, .testi-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .nav-links { display: none; }
+            .trust-strip { flex-wrap: wrap; gap: 1.5rem; }
+            .cta-box { padding: 2.5rem 1.5rem; }
+            .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Nav -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">
+                <svg viewBox="0 0 638.03 354.11" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <defs>
+                        <linearGradient id="dl1" x1="68.82" y1="250.36" x2="513.51" y2="-.16" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#6B7280"/><stop offset=".39" stop-color="#9CA3AF"/><stop offset=".69" stop-color="#D1D5DB"/><stop offset="1" stop-color="#6B7280"/></linearGradient>
+                    </defs>
+                    <g>
+                        <path fill="url(#dl1)" d="M447.88,64.85h-17.99v104.14c0,1.65-1.36,3-3.02,3h-216.9c-1.65,0-3.01-1.35-3.01-3V50.51c0-1.67,1.36-3.01,3.01-3.01h199.12v-20.53h-199.12c-13,0-23.54,10.53-23.54,23.54v118.48c0,13,10.55,23.53,23.54,23.53h216.9c13,0,23.54-10.53,23.54-23.53v-104.55c-.8.27-1.66.41-2.54.41Z"/>
+                        <path fill="url(#dl1)" d="M365.84,99.44h-37.1v-37.1c0-1.32-1.07-2.39-2.39-2.39h-15.83c-1.32,0-2.39,1.07-2.39,2.39v37.1h-37.1c-1.32,0-2.39,1.07-2.39,2.39v15.83c0,1.32,1.07,2.39,2.39,2.39h37.1v37.1c0,1.32,1.07,2.39,2.39,2.39h15.83c1.32,0,2.39-1.07,2.39-2.39v-37.1h37.1c1.32,0,2.39-1.07,2.39-2.39v-15.83c0-1.32-1.07-2.39-2.39-2.39Z"/>
+                        <path fill="url(#dl1)" d="M438.19,234.23h-236.38c-1.58,0-3.09-.65-4.18-1.8l-13.91-14.67c-3.48-3.67-.88-9.73,4.18-9.73h262.23c4.85,0,7.53,5.63,4.47,9.4l-11.94,14.67c-1.09,1.34-2.74,2.13-4.47,2.13Z"/>
+                        <rect fill="url(#dl1)" x="424.73" y="17.08" width="31.17" height="31.17" rx="5.35" ry="5.35"/>
+                        <rect fill="url(#dl1)" x="467.05" y="39.35" width="17.81" height="17.81" rx="3.06" ry="3.06"/>
+                        <rect fill="url(#dl1)" x="470.01" width="24.65" height="24.65" rx="4.23" ry="4.23"/>
+                        <path fill="#1A1D26" d="M65.45,321.16c-.18,16.48-10.29,32.95-32.68,32.95S0,338,0,321.25s10.74-33.59,32.77-33.59,32.86,16.84,32.68,33.5ZM11.83,321.43c.27,10.47,5.92,21.67,20.94,21.67s20.66-11.29,20.85-21.76c.18-10.74-5.83-22.76-20.85-22.76s-21.21,12.11-20.94,22.85Z"/>
+                        <path fill="#1A1D26" d="M87.03,299.86h-20.21v-10.92h52.44v10.92h-20.21v52.8h-12.02v-52.8Z"/>
+                        <path fill="#1A1D26" d="M169.96,352.75v-25.76h-31.32v25.76h-12.02v-63.72h12.02v26.85h31.32v-26.85h11.93v63.72h-11.93Z"/>
+                        <path fill="#1A1D26" d="M240.69,352.66h-47.7v-63.72h47.7v11.65h-35.78v14.66h34.5v11.2h-34.5v14.38h35.78v11.83Z"/>
+                        <path fill="#1A1D26" d="M306.5,352.66h-14.29l-18.57-21.3h-11.56v21.3h-12.02v-63.81c10.1,0,20.21.09,30.31.09,15.02.09,22.94,10.1,22.94,21.12,0,8.74-4.01,17.57-16.11,20.03l19.3,21.76v.82ZM262.08,300.13v20.39h18.3c7.65,0,10.92-5.1,10.92-10.2s-3.37-10.2-10.92-10.2h-18.3Z"/>
+                        <path fill="#1A1D26" d="M368.67,319.89v23.76c-3.28,3.28-6.95,5.77-11.01,7.46-4.07,1.7-8.41,2.55-13.02,2.55-6.37,0-12.03-1.38-16.98-4.14-4.95-2.76-8.8-6.63-11.56-11.61-2.76-4.98-4.14-10.68-4.14-17.11s1.38-12.14,4.14-17.11c2.76-4.98,6.63-8.84,11.61-11.61,4.98-2.76,10.68-4.14,17.11-4.14,8.74,0,16.32,3.16,22.76,9.47l-2.64,2.82c-2.73-2.73-5.81-4.82-9.24-6.28-3.43-1.46-7.05-2.18-10.88-2.18-5.64,0-10.65,1.21-15.02,3.64-4.37,2.43-7.77,5.84-10.2,10.24-2.43,4.4-3.64,9.45-3.64,15.16s1.21,10.67,3.64,15.07c2.43,4.4,5.81,7.83,10.15,10.29,4.34,2.46,9.3,3.69,14.88,3.69,3.82,0,7.51-.7,11.06-2.09,3.55-1.4,6.57-3.34,9.06-5.83v-18.21h-22.94v-3.82h26.85Z"/>
+                        <path fill="#1A1D26" d="M395.07,350.47c-3.76-2.12-6.69-5.11-8.78-8.97-2.09-3.85-3.14-8.27-3.14-13.24v-39.33h4.01v39.33c0,4.25.88,8,2.64,11.24,1.76,3.25,4.22,5.78,7.37,7.6,3.15,1.82,6.77,2.73,10.83,2.73s7.68-.91,10.83-2.73c3.15-1.82,5.61-4.35,7.37-7.6,1.76-3.25,2.64-6.99,2.64-11.24v-39.33h4.01v39.33c0,4.98-1.05,9.39-3.14,13.24-2.09,3.85-5.02,6.84-8.78,8.97-3.76,2.12-8.07,3.19-12.93,3.19s-9.16-1.06-12.93-3.19Z"/>
+                        <path fill="#1A1D26" d="M498.21,288.94l-25.12,38.32v25.4h-4.01v-25.4l-25.03-38.32h4.73l22.3,34.41,22.3-34.41h4.82Z"/>
+                        <path fill="#1A1D26" d="M514.5,350.43c-4.67-2.15-8.31-5.02-10.92-8.6l2.73-2.73c2.06,3.16,5.25,5.73,9.56,7.74,4.31,2,8.8,3,13.47,3,6.43,0,11.52-1.2,15.25-3.6,3.73-2.4,5.6-5.66,5.6-9.79,0-2.61-.65-4.76-1.96-6.46-1.31-1.7-3.49-3.15-6.55-4.37-3.07-1.21-7.45-2.37-13.15-3.46-5.83-1.15-10.42-2.49-13.79-4.01-3.37-1.52-5.81-3.37-7.33-5.55-1.52-2.18-2.28-4.92-2.28-8.19s.99-6.17,2.96-8.69c1.97-2.52,4.76-4.46,8.37-5.83,3.61-1.37,7.78-2.05,12.52-2.05s8.86.77,12.74,2.32c3.88,1.55,7.16,3.81,9.83,6.78l-2.55,2.82c-2.31-2.61-5.2-4.63-8.69-6.05-3.49-1.43-7.3-2.14-11.42-2.14-6.01,0-10.82,1.17-14.43,3.5-3.61,2.34-5.42,5.45-5.42,9.33,0,2.55.64,4.66,1.91,6.33,1.27,1.67,3.37,3.09,6.28,4.28,2.91,1.18,6.95,2.29,12.11,3.32,6.37,1.27,11.33,2.67,14.88,4.19,3.55,1.52,6.1,3.37,7.65,5.55,1.55,2.18,2.32,4.95,2.32,8.28,0,5.34-2.23,9.56-6.69,12.65-4.46,3.09-10.51,4.64-18.16,4.64-5.22,0-10.17-1.08-14.84-3.23Z"/>
+                        <path fill="#1A1D26" d="M563.2,352.66v-63.72h11.93v63.72h-11.93Z"/>
+                        <path fill="#1A1D26" d="M605.8,299.86h-20.21v-10.92h52.44v10.92h-20.21v52.8h-12.02v-52.8Z"/>
+                    </g>
+                </svg>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#how">How It Works</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#cta" class="btn-blue">Free Assessment →</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-chip fade-up">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                Texas-Based Managed IT Services
+            </div>
+            <h1 class="fade-up d1">We're the IT team<br>so <span class="blue">you don't have to be</span></h1>
+            <p class="hero-desc fade-up d2">Your business runs on technology. But you didn't start a business to manage servers, fight ransomware, or troubleshoot printers. That's our job.</p>
+            <div class="hero-ctas fade-up d3">
+                <a href="#cta" class="btn-blue">Get Your Free IT Assessment →</a>
+                <a href="tel:+1XXXXXXXXXX" class="btn-white">📞 Call Us Today</a>
+            </div>
+            <div class="trust-strip fade-up d4">
+                <div class="trust-stat">
+                    <div class="trust-val">99.9%</div>
+                    <div class="trust-lbl">Uptime</div>
+                </div>
+                <div class="trust-stat">
+                    <div class="trust-val">&lt;15 min</div>
+                    <div class="trust-lbl">Response</div>
+                </div>
+                <div class="trust-stat">
+                    <div class="trust-val">100%</div>
+                    <div class="trust-lbl">Texas-Based</div>
+                </div>
+                <div class="trust-stat">
+                    <div class="trust-val">$0</div>
+                    <div class="trust-lbl">Hidden Fees</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem / Solution -->
+    <section class="ps-section section-pad">
+        <div class="container">
+            <div class="section-tag">Sound Familiar?</div>
+            <h2>The break-fix cycle is costing you more than you think</h2>
+
+            <div class="ps-grid">
+                <div class="ps-card problem">
+                    <h3>❌ Without managed IT</h3>
+                    <ul class="ps-list">
+                        <li><span class="icon">💸</span> Unpredictable emergency repair bills every month</li>
+                        <li><span class="icon">😰</span> You're the de facto IT person (and you hate it)</li>
+                        <li><span class="icon">🔓</span> Your data is one phishing email from disaster</li>
+                        <li><span class="icon">⏳</span> Downtime costs revenue and client trust</li>
+                        <li><span class="icon">🤷</span> No plan, no backups, no idea what's going on</li>
+                    </ul>
+                </div>
+                <div class="ps-card solution">
+                    <h3>✓ With Other Guys IT</h3>
+                    <ul class="ps-list">
+                        <li><span class="icon">📊</span> One predictable monthly fee — no surprises, ever</li>
+                        <li><span class="icon">🧑‍💻</span> A full IT team on call, without hiring anyone</li>
+                        <li><span class="icon">🛡️</span> Enterprise-grade security protecting you 24/7</li>
+                        <li><span class="icon">⚡</span> Proactive monitoring catches problems first</li>
+                        <li><span class="icon">📋</span> Clear roadmap, regular reports, total transparency</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="section-pad">
+        <div class="container">
+            <div class="section-tag">What We Handle</div>
+            <h2>Full-stack IT, flat monthly price</h2>
+            <p class="section-desc">Everything your business needs to run securely and smoothly — managed, monitored, and maintained by us.</p>
+
+            <div class="services-grid">
+                <div class="svc-card">
+                    <div class="svc-icon">🖥️</div>
+                    <h3>Managed IT Services</h3>
+                    <p>24/7 monitoring, proactive maintenance, help desk support, and strategic IT planning. We're your entire IT department.</p>
+                </div>
+                <div class="svc-card">
+                    <div class="svc-icon">🛡️</div>
+                    <h3>Cybersecurity</h3>
+                    <p>Endpoint protection, firewall management, threat detection, security awareness training, and incident response.</p>
+                </div>
+                <div class="svc-card">
+                    <div class="svc-icon">☁️</div>
+                    <h3>Cloud Solutions</h3>
+                    <p>Cloud migration, Microsoft 365, hybrid infrastructure, backup & disaster recovery. Always available, always safe.</p>
+                </div>
+                <div class="svc-card">
+                    <div class="svc-icon">📞</div>
+                    <h3>VoIP Phone Systems</h3>
+                    <p>Modern business phones with crystal clear quality. Work from anywhere — desk, laptop, or mobile.</p>
+                </div>
+                <div class="svc-card">
+                    <div class="svc-icon">🌐</div>
+                    <h3>Networking</h3>
+                    <p>Network design, Wi-Fi optimization, structured cabling, and performance monitoring for reliable connectivity.</p>
+                </div>
+                <div class="svc-card">
+                    <div class="svc-icon">🤝</div>
+                    <h3>Co-Managed IT</h3>
+                    <p>Already have IT staff? We fill the gaps — expertise, tools, and after-hours coverage they can't get alone.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it works -->
+    <section id="how" class="how-section section-pad">
+        <div class="container" style="text-align:center;">
+            <div class="section-tag">How It Works</div>
+            <h2>Three steps to IT peace of mind</h2>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <h3>Free Assessment</h3>
+                    <p>We audit your current setup — network, security, backups, everything. You get an honest report, no sales pitch.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <h3>Custom Plan</h3>
+                    <p>Based on your needs and budget, we build a plan that covers exactly what your business requires.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <h3>We Handle Everything</h3>
+                    <p>You run your business. We run the IT — monitoring, maintenance, support, security. All of it. Done.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div>
+                    <div class="stat-val">99.9%</div>
+                    <div class="stat-lbl">Uptime Guarantee</div>
+                </div>
+                <div>
+                    <div class="stat-val">&lt;15m</div>
+                    <div class="stat-lbl">Avg Response</div>
+                </div>
+                <div>
+                    <div class="stat-val">24/7</div>
+                    <div class="stat-lbl">Monitoring</div>
+                </div>
+                <div>
+                    <div class="stat-val">$0</div>
+                    <div class="stat-lbl">Surprise Bills</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="section-pad">
+        <div class="container">
+            <div class="section-tag">Client Stories</div>
+            <h2>They stopped worrying about IT</h2>
+
+            <div class="testi-grid">
+                <div class="testi-card">
+                    <div class="stars">★★★★★</div>
+                    <blockquote>"We used to spend <strong>$200/hour on emergency calls</strong>. Now we pay one flat fee and haven't had a single emergency in 8 months."</blockquote>
+                    <div class="t-footer">
+                        <div class="t-avatar">MR</div>
+                        <div>
+                            <div class="t-name">Maria R.</div>
+                            <div class="t-role">Owner, Dental Practice</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testi-card">
+                    <div class="stars">★★★★★</div>
+                    <blockquote>"They migrated our whole office to the cloud over a weekend. Monday morning, <strong>everything just worked.</strong>"</blockquote>
+                    <div class="t-footer">
+                        <div class="t-avatar">JT</div>
+                        <div>
+                            <div class="t-name">James T.</div>
+                            <div class="t-role">Managing Partner, Law Firm</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testi-card">
+                    <div class="stars">★★★★★</div>
+                    <blockquote>"I called at 11pm on a Saturday. <strong>A real person picked up.</strong> Fixed in 20 minutes. That's why we stay."</blockquote>
+                    <div class="t-footer">
+                        <div class="t-avatar">PJ</div>
+                        <div>
+                            <div class="t-name">Patricia J.</div>
+                            <div class="t-role">Owner, Accounting Firm</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="cta" class="cta-section section-pad">
+        <div class="container">
+            <div class="cta-box">
+                <div class="section-tag">Let's Talk</div>
+                <h2>Your free IT assessment is<br>one conversation away</h2>
+                <p>No contracts. No commitments. We'll look at your setup, tell you where the risks are, and give you a straight answer on what it costs to fix them.</p>
+                <a href="#" class="btn-blue" style="padding: 0.9rem 2rem; font-size: 1rem;">Schedule My Free Assessment →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <div>
+                <div class="footer-logo">
+                    <svg viewBox="0 0 638.03 354.11" xmlns="http://www.w3.org/2000/svg" style="height:24px;width:auto;opacity:0.25;">
+                        <g>
+                            <path fill="#1A1D26" d="M447.88,64.85h-17.99v104.14c0,1.65-1.36,3-3.02,3h-216.9c-1.65,0-3.01-1.35-3.01-3V50.51c0-1.67,1.36-3.01,3.01-3.01h199.12v-20.53h-199.12c-13,0-23.54,10.53-23.54,23.54v118.48c0,13,10.55,23.53,23.54,23.53h216.9c13,0,23.54-10.53,23.54-23.53v-104.55c-.8.27-1.66.41-2.54.41Z"/>
+                            <path fill="#1A1D26" d="M365.84,99.44h-37.1v-37.1c0-1.32-1.07-2.39-2.39-2.39h-15.83c-1.32,0-2.39,1.07-2.39,2.39v37.1h-37.1c-1.32,0-2.39,1.07-2.39,2.39v15.83c0,1.32,1.07,2.39,2.39,2.39h37.1v37.1c0,1.32,1.07,2.39,2.39,2.39h15.83c1.32,0,2.39-1.07,2.39-2.39v-37.1h37.1c1.32,0,2.39-1.07,2.39-2.39v-15.83c0-1.32-1.07-2.39-2.39-2.39Z"/>
+                            <path fill="#1A1D26" d="M438.19,234.23h-236.38c-1.58,0-3.09-.65-4.18-1.8l-13.91-14.67c-3.48-3.67-.88-9.73,4.18-9.73h262.23c4.85,0,7.53,5.63,4.47,9.4l-11.94,14.67c-1.09,1.34-2.74,2.13-4.47,2.13Z"/>
+                            <rect fill="#1A1D26" x="424.73" y="17.08" width="31.17" height="31.17" rx="5.35" ry="5.35"/>
+                            <rect fill="#1A1D26" x="467.05" y="39.35" width="17.81" height="17.81" rx="3.06" ry="3.06"/>
+                            <rect fill="#1A1D26" x="470.01" width="24.65" height="24.65" rx="4.23" ry="4.23"/>
+                            <path fill="#1A1D26" d="M65.45,321.16c-.18,16.48-10.29,32.95-32.68,32.95S0,338,0,321.25s10.74-33.59,32.77-33.59,32.86,16.84,32.68,33.5ZM11.83,321.43c.27,10.47,5.92,21.67,20.94,21.67s20.66-11.29,20.85-21.76c.18-10.74-5.83-22.76-20.85-22.76s-21.21,12.11-20.94,22.85Z"/>
+                            <path fill="#1A1D26" d="M87.03,299.86h-20.21v-10.92h52.44v10.92h-20.21v52.8h-12.02v-52.8Z"/>
+                            <path fill="#1A1D26" d="M169.96,352.75v-25.76h-31.32v25.76h-12.02v-63.72h12.02v26.85h31.32v-26.85h11.93v63.72h-11.93Z"/>
+                            <path fill="#1A1D26" d="M240.69,352.66h-47.7v-63.72h47.7v11.65h-35.78v14.66h34.5v11.2h-34.5v14.38h35.78v11.83Z"/>
+                            <path fill="#1A1D26" d="M306.5,352.66h-14.29l-18.57-21.3h-11.56v21.3h-12.02v-63.81c10.1,0,20.21.09,30.31.09,15.02.09,22.94,10.1,22.94,21.12,0,8.74-4.01,17.57-16.11,20.03l19.3,21.76v.82ZM262.08,300.13v20.39h18.3c7.65,0,10.92-5.1,10.92-10.2s-3.37-10.2-10.92-10.2h-18.3Z"/>
+                            <path fill="#1A1D26" d="M368.67,319.89v23.76c-3.28,3.28-6.95,5.77-11.01,7.46-4.07,1.7-8.41,2.55-13.02,2.55-6.37,0-12.03-1.38-16.98-4.14-4.95-2.76-8.8-6.63-11.56-11.61-2.76-4.98-4.14-10.68-4.14-17.11s1.38-12.14,4.14-17.11c2.76-4.98,6.63-8.84,11.61-11.61,4.98-2.76,10.68-4.14,17.11-4.14,8.74,0,16.32,3.16,22.76,9.47l-2.64,2.82c-2.73-2.73-5.81-4.82-9.24-6.28-3.43-1.46-7.05-2.18-10.88-2.18-5.64,0-10.65,1.21-15.02,3.64-4.37,2.43-7.77,5.84-10.2,10.24-2.43,4.4-3.64,9.45-3.64,15.16s1.21,10.67,3.64,15.07c2.43,4.4,5.81,7.83,10.15,10.29,4.34,2.46,9.3,3.69,14.88,3.69,3.82,0,7.51-.7,11.06-2.09,3.55-1.4,6.57-3.34,9.06-5.83v-18.21h-22.94v-3.82h26.85Z"/>
+                            <path fill="#1A1D26" d="M395.07,350.47c-3.76-2.12-6.69-5.11-8.78-8.97-2.09-3.85-3.14-8.27-3.14-13.24v-39.33h4.01v39.33c0,4.25.88,8,2.64,11.24,1.76,3.25,4.22,5.78,7.37,7.6,3.15,1.82,6.77,2.73,10.83,2.73s7.68-.91,10.83-2.73c3.15-1.82,5.61-4.35,7.37-7.6,1.76-3.25,2.64-6.99,2.64-11.24v-39.33h4.01v39.33c0,4.98-1.05,9.39-3.14,13.24-2.09,3.85-5.02,6.84-8.78,8.97-3.76,2.12-8.07,3.19-12.93,3.19s-9.16-1.06-12.93-3.19Z"/>
+                            <path fill="#1A1D26" d="M498.21,288.94l-25.12,38.32v25.4h-4.01v-25.4l-25.03-38.32h4.73l22.3,34.41,22.3-34.41h4.82Z"/>
+                            <path fill="#1A1D26" d="M514.5,350.43c-4.67-2.15-8.31-5.02-10.92-8.6l2.73-2.73c2.06,3.16,5.25,5.73,9.56,7.74,4.31,2,8.8,3,13.47,3,6.43,0,11.52-1.2,15.25-3.6,3.73-2.4,5.6-5.66,5.6-9.79,0-2.61-.65-4.76-1.96-6.46-1.31-1.7-3.49-3.15-6.55-4.37-3.07-1.21-7.45-2.37-13.15-3.46-5.83-1.15-10.42-2.49-13.79-4.01-3.37-1.52-5.81-3.37-7.33-5.55-1.52-2.18-2.28-4.92-2.28-8.19s.99-6.17,2.96-8.69c1.97-2.52,4.76-4.46,8.37-5.83,3.61-1.37,7.78-2.05,12.52-2.05s8.86.77,12.74,2.32c3.88,1.55,7.16,3.81,9.83,6.78l-2.55,2.82c-2.31-2.61-5.2-4.63-8.69-6.05-3.49-1.43-7.3-2.14-11.42-2.14-6.01,0-10.82,1.17-14.43,3.5-3.61,2.34-5.42,5.45-5.42,9.33,0,2.55.64,4.66,1.91,6.33,1.27,1.67,3.37,3.09,6.28,4.28,2.91,1.18,6.95,2.29,12.11,3.32,6.37,1.27,11.33,2.67,14.88,4.19,3.55,1.52,6.1,3.37,7.65,5.55,1.55,2.18,2.32,4.95,2.32,8.28,0,5.34-2.23,9.56-6.69,12.65-4.46,3.09-10.51,4.64-18.16,4.64-5.22,0-10.17-1.08-14.84-3.23Z"/>
+                            <path fill="#1A1D26" d="M563.2,352.66v-63.72h11.93v63.72h-11.93Z"/>
+                            <path fill="#1A1D26" d="M605.8,299.86h-20.21v-10.92h52.44v10.92h-20.21v52.8h-12.02v-52.8Z"/>
+                        </g>
+                    </svg>
+                </div>
+                <div class="footer-copy">© 2025 Other Guys IT, LLC · Texas</div>
+            </div>
+            <ul class="footer-links">
+                <li><a href="#">Privacy</a></li>
+                <li><a href="#">Terms</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+        });
+    </script>
+</body>
+</html>

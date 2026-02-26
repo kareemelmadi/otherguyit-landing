@@ -6,21 +6,22 @@
     <title>Other Guys IT — We Handle IT. You Handle Business.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Literata:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
             --navy: #0B1D3A;
-            --navy-mid: #132D5E;
+            --navy-mid: #112347;
+            --navy-light: #1A3260;
             --electric: #00E5A0;
             --electric-dim: #00C98B;
+            --electric-glow: rgba(0, 229, 160, 0.12);
             --warm: #FF6F3C;
-            --cream: #F7F5F0;
             --slate: #8A95A8;
+            --slate-light: #A8B2C1;
             --white: #FFFFFF;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         html { scroll-behavior: smooth; }
 
         body {
@@ -36,8 +37,8 @@
             top: 0; left: 0;
             width: 100%; height: 100%;
             background-image:
-                linear-gradient(rgba(0, 229, 160, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 229, 160, 0.03) 1px, transparent 1px);
+                linear-gradient(rgba(0, 229, 160, 0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 229, 160, 0.025) 1px, transparent 1px);
             background-size: 60px 60px;
             z-index: 0;
             pointer-events: none;
@@ -48,7 +49,7 @@
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: radial-gradient(ellipse at 50% 0%, rgba(0, 229, 160, 0.08) 0%, transparent 60%);
+            background: radial-gradient(ellipse at 50% 0%, rgba(0, 229, 160, 0.06) 0%, transparent 60%);
         }
 
         /* ── Navigation ── */
@@ -57,14 +58,14 @@
             top: 0; left: 0;
             width: 100%;
             z-index: 100;
-            padding: 1.25rem 2rem;
+            padding: 1rem 2rem;
             transition: all 0.4s ease;
         }
 
         nav.scrolled {
             background: rgba(11, 29, 58, 0.92);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(0, 229, 160, 0.1);
+            border-bottom: 1px solid rgba(0, 229, 160, 0.08);
         }
 
         .nav-inner {
@@ -75,13 +76,10 @@
             justify-content: space-between;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: -0.03em;
+        .nav-logo svg {
+            height: 40px;
+            width: auto;
         }
-
-        .logo span { color: var(--electric); }
 
         .nav-links {
             display: flex;
@@ -94,8 +92,9 @@
             color: var(--slate);
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             transition: color 0.3s;
+            letter-spacing: 0.01em;
         }
 
         .nav-links a:hover { color: var(--electric); }
@@ -103,14 +102,14 @@
         .btn-primary {
             background: var(--electric);
             color: var(--navy);
-            padding: 0.75rem 1.75rem;
+            padding: 0.7rem 1.6rem;
             border-radius: 8px;
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.4rem;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border: none;
             cursor: pointer;
@@ -123,17 +122,17 @@
         }
 
         .btn-outline {
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
             color: var(--white);
-            padding: 0.75rem 1.75rem;
+            padding: 0.7rem 1.6rem;
             border-radius: 8px;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             text-decoration: none;
             transition: all 0.3s;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.4rem;
         }
 
         .btn-outline:hover {
@@ -154,7 +153,7 @@
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1.1fr 1fr;
             gap: 4rem;
             align-items: center;
             position: relative;
@@ -165,11 +164,11 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: rgba(0, 229, 160, 0.1);
-            border: 1px solid rgba(0, 229, 160, 0.2);
-            padding: 0.5rem 1rem;
+            background: var(--electric-glow);
+            border: 1px solid rgba(0, 229, 160, 0.15);
+            padding: 0.45rem 1rem;
             border-radius: 50px;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             color: var(--electric);
             margin-bottom: 1.5rem;
             font-weight: 500;
@@ -177,8 +176,8 @@
 
         .hero-badge::before {
             content: '';
-            width: 8px;
-            height: 8px;
+            width: 7px;
+            height: 7px;
             border-radius: 50%;
             background: var(--electric);
             animation: pulse-dot 2s infinite;
@@ -190,9 +189,9 @@
         }
 
         h1 {
-            font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+            font-size: clamp(2.8rem, 5.5vw, 4.2rem);
             font-weight: 900;
-            line-height: 1.05;
+            line-height: 1.08;
             letter-spacing: -0.04em;
             margin-bottom: 1.5rem;
         }
@@ -200,11 +199,11 @@
         h1 .accent { color: var(--electric); }
 
         .hero-sub {
-            font-size: 1.15rem;
-            color: var(--slate);
-            line-height: 1.7;
+            font-size: 1.1rem;
+            color: var(--slate-light);
+            line-height: 1.75;
             margin-bottom: 2.5rem;
-            max-width: 500px;
+            max-width: 480px;
         }
 
         .hero-ctas {
@@ -219,9 +218,9 @@
             border-radius: 16px;
             overflow: hidden;
             box-shadow:
-                0 0 0 1px rgba(0, 229, 160, 0.1),
+                0 0 0 1px rgba(0, 229, 160, 0.08),
                 0 40px 100px rgba(0, 0, 0, 0.5);
-            transform: perspective(1200px) rotateY(-4deg) rotateX(2deg);
+            transform: perspective(1200px) rotateY(-3deg) rotateX(2deg);
             transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -238,17 +237,13 @@
             border-bottom: 1px solid #21262D;
         }
 
-        .terminal-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
+        .terminal-dot { width: 12px; height: 12px; border-radius: 50%; }
 
         .terminal-body {
             padding: 1.5rem;
             font-family: 'JetBrains Mono', 'Fira Code', monospace;
-            font-size: 0.85rem;
-            line-height: 1.8;
+            font-size: 0.82rem;
+            line-height: 1.9;
             color: #E6EDF3;
         }
 
@@ -261,7 +256,7 @@
         .cursor {
             display: inline-block;
             width: 8px;
-            height: 18px;
+            height: 16px;
             background: var(--electric);
             animation: blink 1s step-end infinite;
             vertical-align: text-bottom;
@@ -273,23 +268,13 @@
             50% { opacity: 0; }
         }
 
-        /* ── Section styles ── */
-        section {
-            position: relative;
-            z-index: 2;
-        }
-
-        .section-pad {
-            padding: 6rem 2rem;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+        /* ── Shared section styles ── */
+        section { position: relative; z-index: 2; }
+        .section-pad { padding: 6rem 2rem; }
+        .container { max-width: 1200px; margin: 0 auto; }
 
         .section-label {
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             text-transform: uppercase;
             letter-spacing: 0.15em;
             color: var(--electric);
@@ -298,16 +283,17 @@
         }
 
         h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
+            font-size: clamp(2rem, 4vw, 2.8rem);
             font-weight: 800;
             letter-spacing: -0.03em;
             margin-bottom: 1rem;
+            line-height: 1.1;
         }
 
         .section-sub {
             color: var(--slate);
-            font-size: 1.1rem;
-            max-width: 600px;
+            font-size: 1.05rem;
+            max-width: 560px;
             line-height: 1.7;
         }
 
@@ -315,13 +301,13 @@
         .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-top: 3.5rem;
+            gap: 1.25rem;
+            margin-top: 3rem;
         }
 
         .service-card {
-            background: rgba(19, 45, 94, 0.4);
-            border: 1px solid rgba(0, 229, 160, 0.08);
+            background: rgba(17, 35, 71, 0.5);
+            border: 1px solid rgba(0, 229, 160, 0.06);
             border-radius: 16px;
             padding: 2rem;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -342,32 +328,33 @@
         .service-card:hover::before { opacity: 1; }
 
         .service-card:hover {
-            background: rgba(19, 45, 94, 0.7);
-            border-color: rgba(0, 229, 160, 0.2);
+            background: rgba(17, 35, 71, 0.8);
+            border-color: rgba(0, 229, 160, 0.15);
             transform: translateY(-4px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
         }
 
         .service-icon {
             width: 48px;
             height: 48px;
             border-radius: 12px;
-            background: rgba(0, 229, 160, 0.1);
+            background: var(--electric-glow);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             margin-bottom: 1.25rem;
         }
 
         .service-card h3 {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             font-weight: 700;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.65rem;
         }
 
         .service-card p {
             color: var(--slate);
-            font-size: 0.92rem;
+            font-size: 0.9rem;
             line-height: 1.65;
         }
 
@@ -380,7 +367,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
-            align-items: center;
+            align-items: start;
             margin-top: 3rem;
         }
 
@@ -402,33 +389,33 @@
             height: 28px;
             min-width: 28px;
             border-radius: 8px;
-            background: rgba(0, 229, 160, 0.15);
+            background: var(--electric-glow);
             color: var(--electric);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: 700;
             margin-top: 2px;
         }
 
         .why-item h4 {
-            font-size: 1.05rem;
+            font-size: 1rem;
             font-weight: 700;
             margin-bottom: 0.25rem;
         }
 
         .why-item p {
             color: var(--slate);
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             line-height: 1.6;
         }
 
         /* ── Stats bar ── */
         .stats-bar {
-            background: rgba(0, 229, 160, 0.04);
-            border-top: 1px solid rgba(0, 229, 160, 0.1);
-            border-bottom: 1px solid rgba(0, 229, 160, 0.1);
+            background: rgba(0, 229, 160, 0.03);
+            border-top: 1px solid rgba(0, 229, 160, 0.08);
+            border-bottom: 1px solid rgba(0, 229, 160, 0.08);
         }
 
         .stats-grid {
@@ -440,7 +427,7 @@
         }
 
         .stat-num {
-            font-size: 2.8rem;
+            font-size: 2.6rem;
             font-weight: 900;
             letter-spacing: -0.03em;
             color: var(--electric);
@@ -448,28 +435,35 @@
 
         .stat-label {
             color: var(--slate);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             margin-top: 0.25rem;
+            font-weight: 500;
         }
 
         /* ── Testimonials ── */
         .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-top: 3.5rem;
+            gap: 1.25rem;
+            margin-top: 3rem;
         }
 
         .testimonial-card {
-            background: rgba(19, 45, 94, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(17, 35, 71, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 16px;
             padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .testimonial-card:hover {
+            border-color: rgba(0, 229, 160, 0.12);
+            transform: translateY(-2px);
         }
 
         .testimonial-card .stars {
             color: #FBBF24;
-            font-size: 1rem;
+            font-size: 0.9rem;
             margin-bottom: 1rem;
             letter-spacing: 2px;
         }
@@ -477,10 +471,15 @@
         .testimonial-card blockquote {
             font-family: 'Literata', serif;
             font-style: italic;
-            color: #CBD5E1;
+            color: var(--slate-light);
             line-height: 1.7;
             font-size: 0.95rem;
             margin-bottom: 1.25rem;
+        }
+
+        .testimonial-card blockquote strong {
+            color: var(--electric);
+            font-style: normal;
         }
 
         .testimonial-author {
@@ -498,49 +497,39 @@
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--navy);
         }
 
-        .author-name {
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .author-title {
-            color: var(--slate);
-            font-size: 0.8rem;
-        }
+        .author-name { font-weight: 600; font-size: 0.88rem; }
+        .author-title { color: var(--slate); font-size: 0.78rem; }
 
         /* ── CTA section ── */
-        .cta-section {
-            text-align: center;
-        }
+        .cta-section { text-align: center; }
 
         .cta-box {
-            background: linear-gradient(135deg, rgba(0, 229, 160, 0.08) 0%, rgba(255, 111, 60, 0.06) 100%);
-            border: 1px solid rgba(0, 229, 160, 0.15);
+            background: linear-gradient(135deg, rgba(0, 229, 160, 0.06) 0%, rgba(255, 111, 60, 0.04) 100%);
+            border: 1px solid rgba(0, 229, 160, 0.12);
             border-radius: 24px;
-            padding: 4rem;
+            padding: 4rem 3rem;
         }
 
-        .cta-box h2 {
-            margin-bottom: 1rem;
-        }
+        .cta-box h2 { margin-bottom: 1rem; }
 
         .cta-box p {
             color: var(--slate);
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             margin-bottom: 2rem;
-            max-width: 500px;
+            max-width: 520px;
             margin-left: auto;
             margin-right: auto;
+            line-height: 1.7;
         }
 
         /* ── Footer ── */
         footer {
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 2.5rem 2rem;
             position: relative;
             z-index: 2;
         }
@@ -553,10 +542,9 @@
             align-items: center;
         }
 
-        .footer-copy {
-            color: var(--slate);
-            font-size: 0.85rem;
-        }
+        .footer-logo svg { height: 28px; width: auto; opacity: 0.5; }
+
+        .footer-copy { color: var(--slate); font-size: 0.82rem; margin-top: 0.5rem; }
 
         .footer-links {
             display: flex;
@@ -567,7 +555,7 @@
         .footer-links a {
             color: var(--slate);
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             transition: color 0.3s;
         }
 
@@ -576,7 +564,7 @@
         /* ── Animations ── */
         .fade-up {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(28px);
             animation: fadeUp 0.8s ease forwards;
         }
 
@@ -587,10 +575,7 @@
         .d1 { animation-delay: 0.1s; }
         .d2 { animation-delay: 0.2s; }
         .d3 { animation-delay: 0.3s; }
-        .d4 { animation-delay: 0.4s; }
-        .d5 { animation-delay: 0.5s; }
-        .d6 { animation-delay: 0.6s; }
-        .d7 { animation-delay: 0.7s; }
+        .d4 { animation-delay: 0.45s; }
 
         /* ── Responsive ── */
         @media (max-width: 768px) {
@@ -602,7 +587,14 @@
             .testimonials-grid { grid-template-columns: 1fr; }
             .nav-links { display: none; }
             .cta-box { padding: 2.5rem 1.5rem; }
+            .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
         }
+
+        /* ── Logo SVG styling ── */
+        .logo-svg .logo-gradient stop:nth-child(1) { stop-color: #b3b2b3; }
+        .logo-svg .logo-gradient stop:nth-child(2) { stop-color: #cbcbca; }
+        .logo-svg .logo-gradient stop:nth-child(3) { stop-color: #f2f2f2; }
+        .logo-svg .logo-gradient stop:nth-child(4) { stop-color: #b3b2b3; }
     </style>
 </head>
 <body>
@@ -611,7 +603,37 @@
     <!-- Nav -->
     <nav id="navbar">
         <div class="nav-inner">
-            <div class="logo">Other Guys <span>IT</span></div>
+            <a href="#" class="nav-logo">
+                <svg viewBox="0 0 638.03 354.11" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="height:40px;width:auto;">
+                    <defs>
+                        <linearGradient id="ng1" x1="68.82" y1="250.36" x2="513.51" y2="-.16" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#b3b2b3"/><stop offset=".39" stop-color="#cbcbca"/><stop offset=".69" stop-color="#f2f2f2"/><stop offset="1" stop-color="#b3b2b3"/></linearGradient>
+                        <linearGradient id="ng2" xlink:href="#ng1"/>
+                        <linearGradient id="ng3" x1="185.34" y1="302.86" x2="554.23" y2="66.76" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#b3b2b3"/><stop offset=".39" stop-color="#cbcbca"/><stop offset=".69" stop-color="#f2f2f2"/><stop offset="1" stop-color="#b3b2b3"/></linearGradient>
+                        <linearGradient id="ng4" x1="65.23" y1="243.97" x2="509.92" y2="-6.54" xlink:href="#ng1"/>
+                        <linearGradient id="ng5" x1="80.48" y1="271.05" x2="525.17" y2="20.53" xlink:href="#ng1"/>
+                        <linearGradient id="ng6" x1="66.65" y1="246.5" x2="511.34" y2="-4.01" xlink:href="#ng1"/>
+                    </defs>
+                    <g>
+                        <path fill="url(#ng1)" d="M447.88,64.85h-17.99v104.14c0,1.65-1.36,3-3.02,3h-216.9c-1.65,0-3.01-1.35-3.01-3V50.51c0-1.67,1.36-3.01,3.01-3.01h199.12v-20.53h-199.12c-13,0-23.54,10.53-23.54,23.54v118.48c0,13,10.55,23.53,23.54,23.53h216.9c13,0,23.54-10.53,23.54-23.53v-104.55c-.8.27-1.66.41-2.54.41Z"/>
+                        <path fill="url(#ng2)" d="M365.84,99.44h-37.1v-37.1c0-1.32-1.07-2.39-2.39-2.39h-15.83c-1.32,0-2.39,1.07-2.39,2.39v37.1h-37.1c-1.32,0-2.39,1.07-2.39,2.39v15.83c0,1.32,1.07,2.39,2.39,2.39h37.1v37.1c0,1.32,1.07,2.39,2.39,2.39h15.83c1.32,0,2.39-1.07,2.39-2.39v-37.1h37.1c1.32,0,2.39-1.07,2.39-2.39v-15.83c0-1.32-1.07-2.39-2.39-2.39Z"/>
+                        <path fill="url(#ng3)" d="M438.19,234.23h-236.38c-1.58,0-3.09-.65-4.18-1.8l-13.91-14.67c-3.48-3.67-.88-9.73,4.18-9.73h262.23c4.85,0,7.53,5.63,4.47,9.4l-11.94,14.67c-1.09,1.34-2.74,2.13-4.47,2.13Z"/>
+                        <rect fill="url(#ng4)" x="424.73" y="17.08" width="31.17" height="31.17" rx="5.35" ry="5.35"/>
+                        <rect fill="url(#ng5)" x="467.05" y="39.35" width="17.81" height="17.81" rx="3.06" ry="3.06"/>
+                        <rect fill="url(#ng6)" x="470.01" width="24.65" height="24.65" rx="4.23" ry="4.23"/>
+                        <path fill="#fff" d="M65.45,321.16c-.18,16.48-10.29,32.95-32.68,32.95S0,338,0,321.25s10.74-33.59,32.77-33.59,32.86,16.84,32.68,33.5ZM11.83,321.43c.27,10.47,5.92,21.67,20.94,21.67s20.66-11.29,20.85-21.76c.18-10.74-5.83-22.76-20.85-22.76s-21.21,12.11-20.94,22.85Z"/>
+                        <path fill="#fff" d="M87.03,299.86h-20.21v-10.92h52.44v10.92h-20.21v52.8h-12.02v-52.8Z"/>
+                        <path fill="#fff" d="M169.96,352.75v-25.76h-31.32v25.76h-12.02v-63.72h12.02v26.85h31.32v-26.85h11.93v63.72h-11.93Z"/>
+                        <path fill="#fff" d="M240.69,352.66h-47.7v-63.72h47.7v11.65h-35.78v14.66h34.5v11.2h-34.5v14.38h35.78v11.83Z"/>
+                        <path fill="#fff" d="M306.5,352.66h-14.29l-18.57-21.3h-11.56v21.3h-12.02v-63.81c10.1,0,20.21.09,30.31.09,15.02.09,22.94,10.1,22.94,21.12,0,8.74-4.01,17.57-16.11,20.03l19.3,21.76v.82ZM262.08,300.13v20.39h18.3c7.65,0,10.92-5.1,10.92-10.2s-3.37-10.2-10.92-10.2h-18.3Z"/>
+                        <path fill="#fff" d="M368.67,319.89v23.76c-3.28,3.28-6.95,5.77-11.01,7.46-4.07,1.7-8.41,2.55-13.02,2.55-6.37,0-12.03-1.38-16.98-4.14-4.95-2.76-8.8-6.63-11.56-11.61-2.76-4.98-4.14-10.68-4.14-17.11s1.38-12.14,4.14-17.11c2.76-4.98,6.63-8.84,11.61-11.61,4.98-2.76,10.68-4.14,17.11-4.14,8.74,0,16.32,3.16,22.76,9.47l-2.64,2.82c-2.73-2.73-5.81-4.82-9.24-6.28-3.43-1.46-7.05-2.18-10.88-2.18-5.64,0-10.65,1.21-15.02,3.64-4.37,2.43-7.77,5.84-10.2,10.24-2.43,4.4-3.64,9.45-3.64,15.16s1.21,10.67,3.64,15.07c2.43,4.4,5.81,7.83,10.15,10.29,4.34,2.46,9.3,3.69,14.88,3.69,3.82,0,7.51-.7,11.06-2.09,3.55-1.4,6.57-3.34,9.06-5.83v-18.21h-22.94v-3.82h26.85Z"/>
+                        <path fill="#fff" d="M395.07,350.47c-3.76-2.12-6.69-5.11-8.78-8.97-2.09-3.85-3.14-8.27-3.14-13.24v-39.33h4.01v39.33c0,4.25.88,8,2.64,11.24,1.76,3.25,4.22,5.78,7.37,7.6,3.15,1.82,6.77,2.73,10.83,2.73s7.68-.91,10.83-2.73c3.15-1.82,5.61-4.35,7.37-7.6,1.76-3.25,2.64-6.99,2.64-11.24v-39.33h4.01v39.33c0,4.98-1.05,9.39-3.14,13.24-2.09,3.85-5.02,6.84-8.78,8.97-3.76,2.12-8.07,3.19-12.93,3.19s-9.16-1.06-12.93-3.19Z"/>
+                        <path fill="#fff" d="M498.21,288.94l-25.12,38.32v25.4h-4.01v-25.4l-25.03-38.32h4.73l22.3,34.41,22.3-34.41h4.82Z"/>
+                        <path fill="#fff" d="M514.5,350.43c-4.67-2.15-8.31-5.02-10.92-8.6l2.73-2.73c2.06,3.16,5.25,5.73,9.56,7.74,4.31,2,8.8,3,13.47,3,6.43,0,11.52-1.2,15.25-3.6,3.73-2.4,5.6-5.66,5.6-9.79,0-2.61-.65-4.76-1.96-6.46-1.31-1.7-3.49-3.15-6.55-4.37-3.07-1.21-7.45-2.37-13.15-3.46-5.83-1.15-10.42-2.49-13.79-4.01-3.37-1.52-5.81-3.37-7.33-5.55-1.52-2.18-2.28-4.92-2.28-8.19s.99-6.17,2.96-8.69c1.97-2.52,4.76-4.46,8.37-5.83,3.61-1.37,7.78-2.05,12.52-2.05s8.86.77,12.74,2.32c3.88,1.55,7.16,3.81,9.83,6.78l-2.55,2.82c-2.31-2.61-5.2-4.63-8.69-6.05-3.49-1.43-7.3-2.14-11.42-2.14-6.01,0-10.82,1.17-14.43,3.5-3.61,2.34-5.42,5.45-5.42,9.33,0,2.55.64,4.66,1.91,6.33,1.27,1.67,3.37,3.09,6.28,4.28,2.91,1.18,6.95,2.29,12.11,3.32,6.37,1.27,11.33,2.67,14.88,4.19,3.55,1.52,6.1,3.37,7.65,5.55,1.55,2.18,2.32,4.95,2.32,8.28,0,5.34-2.23,9.56-6.69,12.65-4.46,3.09-10.51,4.64-18.16,4.64-5.22,0-10.17-1.08-14.84-3.23Z"/>
+                        <path fill="#fff" d="M563.2,352.66v-63.72h11.93v63.72h-11.93Z"/>
+                        <path fill="#fff" d="M605.8,299.86h-20.21v-10.92h52.44v10.92h-20.21v52.8h-12.02v-52.8Z"/>
+                    </g>
+                </svg>
+            </a>
             <ul class="nav-links">
                 <li><a href="#services">Services</a></li>
                 <li><a href="#why">Why Us</a></li>
@@ -673,29 +695,29 @@
                 <div class="service-card fade-up">
                     <div class="service-icon">🛡️</div>
                     <h3>Cybersecurity</h3>
-                    <p>Next-gen endpoint protection, firewall management, threat monitoring, and employee security training. Because the question isn't if you'll be targeted — it's when.</p>
+                    <p>Next-gen endpoint protection, firewall management, threat monitoring, and employee security training. The question isn't if — it's when.</p>
                 </div>
                 <div class="service-card fade-up d1">
                     <div class="service-icon">🖥️</div>
                     <h3>Managed IT Services</h3>
-                    <p>24/7 monitoring, proactive maintenance, help desk support, and strategic planning. Your full IT department — without the full IT department cost.</p>
+                    <p>24/7 monitoring, proactive maintenance, help desk support, and strategic planning. Your full IT department — without the cost.</p>
                 </div>
                 <div class="service-card fade-up d2">
                     <div class="service-icon">☁️</div>
                     <h3>Cloud & Infrastructure</h3>
-                    <p>Server management, cloud migration, hybrid setups, backup & disaster recovery. Your data is your business — we make sure it's always there.</p>
+                    <p>Server management, cloud migration, hybrid setups, backup & disaster recovery. Your data — always there when you need it.</p>
                 </div>
                 <div class="service-card fade-up d3">
                     <div class="service-icon">📞</div>
                     <h3>VoIP Phone Systems</h3>
-                    <p>Modern business phone systems that work anywhere your team does. Crystal clear calls, advanced features, zero desk phones required.</p>
+                    <p>Modern business phones that work anywhere your team does. Crystal clear, advanced features, zero desk phones required.</p>
                 </div>
-                <div class="service-card fade-up d4">
+                <div class="service-card fade-up">
                     <div class="service-icon">🌐</div>
                     <h3>Networking</h3>
                     <p>Enterprise-grade Wi-Fi, structured cabling, network design, and performance optimization. Fast, reliable, secure — pick all three.</p>
                 </div>
-                <div class="service-card fade-up d5">
+                <div class="service-card fade-up d1">
                     <div class="service-icon">🤝</div>
                     <h3>Co-Managed IT</h3>
                     <p>Already have an IT person? We augment your team with the expertise and tools they need. Not replacing — reinforcing.</p>
@@ -714,7 +736,7 @@
                 </div>
                 <div>
                     <div class="stat-num">&lt;15m</div>
-                    <div class="stat-label">Average Response Time</div>
+                    <div class="stat-label">Average Response</div>
                 </div>
                 <div>
                     <div class="stat-num">24/7</div>
@@ -735,7 +757,7 @@
                 <div>
                     <div class="section-label">Why Other Guys IT</div>
                     <h2>The other guys break it.<br>We fix it. Then prevent it.</h2>
-                    <p class="section-sub" style="margin-bottom:0">Most IT companies wait for something to go wrong. We make sure it doesn't.</p>
+                    <p class="section-sub">Most IT companies wait for something to go wrong. We make sure it doesn't.</p>
                 </div>
                 <ul class="why-list">
                     <li class="why-item">
@@ -749,21 +771,21 @@
                         <div class="why-check">✓</div>
                         <div>
                             <h4>Proactive, Not Reactive</h4>
-                            <p>We catch issues before they become emergencies. Most problems get solved before you even know they existed.</p>
+                            <p>We catch issues before they become emergencies. Most problems get solved before you know they existed.</p>
                         </div>
                     </li>
                     <li class="why-item">
                         <div class="why-check">✓</div>
                         <div>
                             <h4>Texas-Based. Real Humans.</h4>
-                            <p>No overseas call centers. No ticket queues that take 48 hours. Call us — a real person who knows your setup picks up.</p>
+                            <p>No overseas call centers. No 48-hour ticket queues. Call us — a real person who knows your setup picks up.</p>
                         </div>
                     </li>
                     <li class="why-item">
                         <div class="why-check">✓</div>
                         <div>
                             <h4>Built for Small Business</h4>
-                            <p>We understand your budget. We understand your priorities. Enterprise-grade IT, small business pricing.</p>
+                            <p>Enterprise-grade IT, small business pricing. We understand your budget and your priorities.</p>
                         </div>
                     </li>
                 </ul>
@@ -780,7 +802,7 @@
             <div class="testimonials-grid">
                 <div class="testimonial-card">
                     <div class="stars">★★★★★</div>
-                    <blockquote>"We used to spend $200/hour on emergency IT calls. Now we pay one flat monthly fee and haven't had a single emergency in 8 months."</blockquote>
+                    <blockquote>"We used to spend <strong>$200/hour on emergency IT calls</strong>. Now we pay one flat monthly fee and haven't had a single emergency in 8 months."</blockquote>
                     <div class="testimonial-author">
                         <div class="author-avatar">MR</div>
                         <div>
@@ -791,7 +813,7 @@
                 </div>
                 <div class="testimonial-card">
                     <div class="stars">★★★★★</div>
-                    <blockquote>"They migrated our entire office to the cloud in a weekend. Monday morning, nobody noticed a thing — and that's exactly the point."</blockquote>
+                    <blockquote>"They migrated our entire office to the cloud in a weekend. Monday morning, <strong>nobody noticed a thing</strong> — and that's exactly the point."</blockquote>
                     <div class="testimonial-author">
                         <div class="author-avatar">JT</div>
                         <div>
@@ -802,7 +824,7 @@
                 </div>
                 <div class="testimonial-card">
                     <div class="stars">★★★★★</div>
-                    <blockquote>"I'm a small business owner, not an IT guy. Other Guys made me feel like I have a Fortune 500 IT team behind me."</blockquote>
+                    <blockquote>"I'm a small business owner, not an IT guy. Other Guys made me feel like I have <strong>a Fortune 500 IT team</strong> behind me."</blockquote>
                     <div class="testimonial-author">
                         <div class="author-avatar">DK</div>
                         <div>
@@ -822,7 +844,7 @@
                 <div class="section-label">Ready?</div>
                 <h2>Get your free IT audit.<br>No pitch. Just truth.</h2>
                 <p>We'll assess your current setup, show you where you're vulnerable, and tell you exactly what it costs to fix it. If we're not the right fit, we'll tell you that too.</p>
-                <a href="#" class="btn-primary" style="font-size:1.1rem; padding: 1rem 2.5rem;">Schedule My Free Audit →</a>
+                <a href="#" class="btn-primary" style="font-size:1.05rem; padding: 0.9rem 2.25rem;">Schedule My Free Audit →</a>
             </div>
         </div>
     </section>
@@ -831,7 +853,29 @@
     <footer>
         <div class="footer-inner">
             <div>
-                <div class="logo" style="margin-bottom:0.5rem">Other Guys <span>IT</span></div>
+                <div class="footer-logo">
+                    <svg viewBox="0 0 638.03 354.11" xmlns="http://www.w3.org/2000/svg" style="height:28px;width:auto;opacity:0.4;">
+                        <g>
+                            <path fill="#fff" d="M447.88,64.85h-17.99v104.14c0,1.65-1.36,3-3.02,3h-216.9c-1.65,0-3.01-1.35-3.01-3V50.51c0-1.67,1.36-3.01,3.01-3.01h199.12v-20.53h-199.12c-13,0-23.54,10.53-23.54,23.54v118.48c0,13,10.55,23.53,23.54,23.53h216.9c13,0,23.54-10.53,23.54-23.53v-104.55c-.8.27-1.66.41-2.54.41Z"/>
+                            <path fill="#fff" d="M365.84,99.44h-37.1v-37.1c0-1.32-1.07-2.39-2.39-2.39h-15.83c-1.32,0-2.39,1.07-2.39,2.39v37.1h-37.1c-1.32,0-2.39,1.07-2.39,2.39v15.83c0,1.32,1.07,2.39,2.39,2.39h37.1v37.1c0,1.32,1.07,2.39,2.39,2.39h15.83c1.32,0,2.39-1.07,2.39-2.39v-37.1h37.1c1.32,0,2.39-1.07,2.39-2.39v-15.83c0-1.32-1.07-2.39-2.39-2.39Z"/>
+                            <path fill="#fff" d="M438.19,234.23h-236.38c-1.58,0-3.09-.65-4.18-1.8l-13.91-14.67c-3.48-3.67-.88-9.73,4.18-9.73h262.23c4.85,0,7.53,5.63,4.47,9.4l-11.94,14.67c-1.09,1.34-2.74,2.13-4.47,2.13Z"/>
+                            <rect fill="#fff" x="424.73" y="17.08" width="31.17" height="31.17" rx="5.35" ry="5.35"/>
+                            <rect fill="#fff" x="467.05" y="39.35" width="17.81" height="17.81" rx="3.06" ry="3.06"/>
+                            <rect fill="#fff" x="470.01" width="24.65" height="24.65" rx="4.23" ry="4.23"/>
+                            <path fill="#fff" d="M65.45,321.16c-.18,16.48-10.29,32.95-32.68,32.95S0,338,0,321.25s10.74-33.59,32.77-33.59,32.86,16.84,32.68,33.5ZM11.83,321.43c.27,10.47,5.92,21.67,20.94,21.67s20.66-11.29,20.85-21.76c.18-10.74-5.83-22.76-20.85-22.76s-21.21,12.11-20.94,22.85Z"/>
+                            <path fill="#fff" d="M87.03,299.86h-20.21v-10.92h52.44v10.92h-20.21v52.8h-12.02v-52.8Z"/>
+                            <path fill="#fff" d="M169.96,352.75v-25.76h-31.32v25.76h-12.02v-63.72h12.02v26.85h31.32v-26.85h11.93v63.72h-11.93Z"/>
+                            <path fill="#fff" d="M240.69,352.66h-47.7v-63.72h47.7v11.65h-35.78v14.66h34.5v11.2h-34.5v14.38h35.78v11.83Z"/>
+                            <path fill="#fff" d="M306.5,352.66h-14.29l-18.57-21.3h-11.56v21.3h-12.02v-63.81c10.1,0,20.21.09,30.31.09,15.02.09,22.94,10.1,22.94,21.12,0,8.74-4.01,17.57-16.11,20.03l19.3,21.76v.82ZM262.08,300.13v20.39h18.3c7.65,0,10.92-5.1,10.92-10.2s-3.37-10.2-10.92-10.2h-18.3Z"/>
+                            <path fill="#fff" d="M368.67,319.89v23.76c-3.28,3.28-6.95,5.77-11.01,7.46-4.07,1.7-8.41,2.55-13.02,2.55-6.37,0-12.03-1.38-16.98-4.14-4.95-2.76-8.8-6.63-11.56-11.61-2.76-4.98-4.14-10.68-4.14-17.11s1.38-12.14,4.14-17.11c2.76-4.98,6.63-8.84,11.61-11.61,4.98-2.76,10.68-4.14,17.11-4.14,8.74,0,16.32,3.16,22.76,9.47l-2.64,2.82c-2.73-2.73-5.81-4.82-9.24-6.28-3.43-1.46-7.05-2.18-10.88-2.18-5.64,0-10.65,1.21-15.02,3.64-4.37,2.43-7.77,5.84-10.2,10.24-2.43,4.4-3.64,9.45-3.64,15.16s1.21,10.67,3.64,15.07c2.43,4.4,5.81,7.83,10.15,10.29,4.34,2.46,9.3,3.69,14.88,3.69,3.82,0,7.51-.7,11.06-2.09,3.55-1.4,6.57-3.34,9.06-5.83v-18.21h-22.94v-3.82h26.85Z"/>
+                            <path fill="#fff" d="M395.07,350.47c-3.76-2.12-6.69-5.11-8.78-8.97-2.09-3.85-3.14-8.27-3.14-13.24v-39.33h4.01v39.33c0,4.25.88,8,2.64,11.24,1.76,3.25,4.22,5.78,7.37,7.6,3.15,1.82,6.77,2.73,10.83,2.73s7.68-.91,10.83-2.73c3.15-1.82,5.61-4.35,7.37-7.6,1.76-3.25,2.64-6.99,2.64-11.24v-39.33h4.01v39.33c0,4.98-1.05,9.39-3.14,13.24-2.09,3.85-5.02,6.84-8.78,8.97-3.76,2.12-8.07,3.19-12.93,3.19s-9.16-1.06-12.93-3.19Z"/>
+                            <path fill="#fff" d="M498.21,288.94l-25.12,38.32v25.4h-4.01v-25.4l-25.03-38.32h4.73l22.3,34.41,22.3-34.41h4.82Z"/>
+                            <path fill="#fff" d="M514.5,350.43c-4.67-2.15-8.31-5.02-10.92-8.6l2.73-2.73c2.06,3.16,5.25,5.73,9.56,7.74,4.31,2,8.8,3,13.47,3,6.43,0,11.52-1.2,15.25-3.6,3.73-2.4,5.6-5.66,5.6-9.79,0-2.61-.65-4.76-1.96-6.46-1.31-1.7-3.49-3.15-6.55-4.37-3.07-1.21-7.45-2.37-13.15-3.46-5.83-1.15-10.42-2.49-13.79-4.01-3.37-1.52-5.81-3.37-7.33-5.55-1.52-2.18-2.28-4.92-2.28-8.19s.99-6.17,2.96-8.69c1.97-2.52,4.76-4.46,8.37-5.83,3.61-1.37,7.78-2.05,12.52-2.05s8.86.77,12.74,2.32c3.88,1.55,7.16,3.81,9.83,6.78l-2.55,2.82c-2.31-2.61-5.2-4.63-8.69-6.05-3.49-1.43-7.3-2.14-11.42-2.14-6.01,0-10.82,1.17-14.43,3.5-3.61,2.34-5.42,5.45-5.42,9.33,0,2.55.64,4.66,1.91,6.33,1.27,1.67,3.37,3.09,6.28,4.28,2.91,1.18,6.95,2.29,12.11,3.32,6.37,1.27,11.33,2.67,14.88,4.19,3.55,1.52,6.1,3.37,7.65,5.55,1.55,2.18,2.32,4.95,2.32,8.28,0,5.34-2.23,9.56-6.69,12.65-4.46,3.09-10.51,4.64-18.16,4.64-5.22,0-10.17-1.08-14.84-3.23Z"/>
+                            <path fill="#fff" d="M563.2,352.66v-63.72h11.93v63.72h-11.93Z"/>
+                            <path fill="#fff" d="M605.8,299.86h-20.21v-10.92h52.44v10.92h-20.21v52.8h-12.02v-52.8Z"/>
+                        </g>
+                    </svg>
+                </div>
                 <div class="footer-copy">© 2025 Other Guys IT, LLC. Texas.</div>
             </div>
             <ul class="footer-links">
@@ -843,7 +887,6 @@
     </footer>
 
     <script>
-        // Navbar scroll
         window.addEventListener('scroll', () => {
             document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
         });

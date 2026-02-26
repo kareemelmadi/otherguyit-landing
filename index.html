@@ -1,20 +1,25 @@
 <!DOCTYPE html>
-<html><head><meta charset="UTF-8"><title>Other Guys IT — Landing Page Concepts</title>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Other Guys IT — Landing Page Concepts</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-body{font-family:system-ui;background:#111;color:#eee;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;gap:2rem;margin:0;padding:2rem;}
-h1{font-size:2rem;margin-bottom:0.5rem;}
-p{color:#888;margin-bottom:2rem;}
-.cards{display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center;}
-a.card{display:block;background:#1a1a1a;border:1px solid #333;border-radius:12px;padding:2rem;width:300px;text-decoration:none;color:#eee;transition:all 0.3s;}
-a.card:hover{border-color:#FF5722;transform:translateY(-4px);box-shadow:0 12px 40px rgba(255,87,34,0.15);}
-a.card h2{font-size:1.2rem;margin:0 0 0.5rem;}
-a.card p{color:#888;font-size:0.9rem;margin:0;}
+body{font-family:'DM Sans',system-ui,sans-serif;background:#0B1D3A;color:#eee;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;gap:1.5rem;margin:0;padding:2rem;}
+h1{font-size:1.8rem;margin-bottom:0;letter-spacing:-0.02em;}
+.sub{color:#8A95A8;margin-bottom:1.5rem;font-size:0.95rem;}
+.cards{display:flex;gap:1.25rem;flex-wrap:wrap;justify-content:center;}
+a.card{display:block;background:rgba(17,35,71,0.5);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:2rem;width:300px;text-decoration:none;color:#eee;transition:all 0.3s;}
+a.card:hover{border-color:#00E5A0;transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,229,160,0.1);}
+a.card h2{font-size:1.15rem;margin:0 0 0.5rem;font-weight:700;}
+a.card p{color:#8A95A8;font-size:0.88rem;margin:0;line-height:1.5;}
+.tag{display:inline-block;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;padding:0.25rem 0.6rem;border-radius:4px;margin-bottom:0.75rem;}
+.tag-dark{background:rgba(0,229,160,0.12);color:#00E5A0;}
+.tag-warm{background:rgba(196,85,45,0.15);color:#E8754E;}
+.tag-light{background:rgba(27,95,237,0.15);color:#4FC3F7;}
 </style></head><body>
 <h1>Other Guys IT — Landing Pages</h1>
-<p>Three creative directions. Click to preview.</p>
+<p class="sub">Three creative directions. Click to preview each.</p>
 <div class="cards">
-<a class="card" href="version-1-confidence.html"><h2>V1 — Confidence</h2><p>Dark navy + electric green. Terminal mockup hero. Tech-forward, developer-energy.</p></a>
-<a class="card" href="version-2-warmth.html"><h2>V2 — Warmth</h2><p>Light sand + rust. Serif accents. Approachable, trustworthy, human.</p></a>
-<a class="card" href="version-3-bold.html"><h2>V3 — Bold</h2><p>Pure black + orange. Bento grid. Editorial typography. Premium, modern.</p></a>
+<a class="card" href="version-1-confidence.html"><div class="tag tag-dark">Dark</div><h2>V1 — Confidence</h2><p>Dark navy + electric green. Terminal mockup hero. Tech-forward, developer energy. Says "we know exactly what we're doing."</p></a>
+<a class="card" href="version-2-warmth.html"><div class="tag tag-warm">Warm</div><h2>V2 — Warmth</h2><p>Sand + rust tones. Serif accents. Approachable, trustworthy, human. Feels like a handshake from someone you trust.</p></a>
+<a class="card" href="version-3-light.html"><div class="tag tag-light">Light</div><h2>V3 — Clean & Light</h2><p>White + blue. Crisp, professional, modern. Fraunces serif headlines. The one that looks like it cost $15K.</p></a>
 </div>
 </body></html>
