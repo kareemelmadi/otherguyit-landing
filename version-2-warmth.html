@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Other Guys IT — Managed IT for Texas Businesses</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --charcoal: #1C1C1C;
+            --sand: #FAF6F1;
+            --sand-dark: #EDE8E0;
+            --rust: #C4552D;
+            --rust-light: #E8754E;
+            --teal: #1A7A6D;
+            --teal-light: #2AA396;
+            --gold: #D4A843;
+            --text: #3A3A3A;
+            --text-light: #7A7A7A;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            background: var(--sand);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* ── Texture overlay ── */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ── Nav ── */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            z-index: 100;
+            padding: 1rem 2rem;
+            transition: all 0.4s;
+        }
+
+        nav.scrolled {
+            background: rgba(250, 246, 241, 0.95);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 1px 0 var(--sand-dark);
+        }
+
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--charcoal);
+        }
+
+        .logo em {
+            font-style: normal;
+            color: var(--rust);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--rust); }
+
+        .btn-warm {
+            background: var(--rust);
+            color: #fff;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-warm:hover {
+            background: var(--rust-light);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 30px rgba(196, 85, 45, 0.25);
+        }
+
+        .btn-teal {
+            background: var(--teal);
+            color: #fff;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-teal:hover {
+            background: var(--teal-light);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 30px rgba(26, 122, 109, 0.25);
+        }
+
+        .btn-ghost {
+            border: 2px solid var(--charcoal);
+            color: var(--charcoal);
+            padding: 0.65rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-ghost:hover {
+            background: var(--charcoal);
+            color: var(--sand);
+        }
+
+        /* ── Hero ── */
+        .hero {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 7rem 2rem 4rem;
+        }
+
+        .hero-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--sand-dark);
+            border: 1px solid #D8D2C8;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.82rem;
+            color: var(--teal);
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -0.04em;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 .underline-accent {
+            text-decoration: underline;
+            text-decoration-color: var(--rust);
+            text-underline-offset: 6px;
+            text-decoration-thickness: 4px;
+        }
+
+        .hero-desc {
+            font-family: 'Source Serif 4', serif;
+            font-size: 1.25rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
+        }
+
+        /* ── Trust bar ── */
+        .trust-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3rem;
+            padding: 2rem 0;
+            border-top: 1px solid var(--sand-dark);
+            margin-top: 2rem;
+        }
+
+        .trust-item {
+            text-align: center;
+        }
+
+        .trust-num {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--charcoal);
+        }
+
+        .trust-label {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-top: 0.15rem;
+        }
+
+        /* ── Section ── */
+        section { position: relative; z-index: 2; }
+
+        .section-pad { padding: 5rem 2rem; }
+
+        .container { max-width: 1100px; margin: 0 auto; }
+
+        .section-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--rust);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--charcoal);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-desc {
+            font-family: 'Source Serif 4', serif;
+            color: var(--text-light);
+            font-size: 1.05rem;
+            max-width: 550px;
+            line-height: 1.7;
+        }
+
+        /* ── Problem / Solution ── */
+        .problem-section {
+            background: var(--charcoal);
+            color: #fff;
+        }
+
+        .ps-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .ps-col h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .ps-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .ps-list li {
+            display: flex;
+            gap: 0.75rem;
+            align-items: flex-start;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .ps-list li .icon {
+            font-size: 1.1rem;
+            min-width: 24px;
+            margin-top: 2px;
+        }
+
+        .ps-list.problems li { color: #B0A8A0; }
+        .ps-list.solutions li { color: #C5D8D4; }
+
+        /* ── Services ── */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            margin-top: 3rem;
+        }
+
+        .svc-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid var(--sand-dark);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .svc-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 50px rgba(0,0,0,0.08);
+            border-color: var(--rust);
+        }
+
+        .svc-emoji {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .svc-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+        }
+
+        .svc-card p {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* ── How it works ── */
+        .how-section {
+            background: linear-gradient(180deg, var(--sand) 0%, #F0EBE3 100%);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-num {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--rust);
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 1.25rem;
+        }
+
+        .step h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+        }
+
+        .step p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .step-connector {
+            position: absolute;
+            top: 28px;
+            right: -1rem;
+            width: 2rem;
+            height: 2px;
+            background: var(--sand-dark);
+        }
+
+        /* ── Testimonials ── */
+        .testi-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .testi-card {
+            background: #fff;
+            border: 1px solid var(--sand-dark);
+            border-radius: 16px;
+            padding: 2rem;
+        }
+
+        .testi-card blockquote {
+            font-family: 'Source Serif 4', serif;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text);
+            margin-bottom: 1.25rem;
+            font-style: italic;
+        }
+
+        .testi-card blockquote strong {
+            color: var(--rust);
+            font-style: normal;
+        }
+
+        .testi-footer {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .testi-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--rust), var(--gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .testi-name { font-weight: 700; font-size: 0.9rem; }
+        .testi-role { font-size: 0.8rem; color: var(--text-light); }
+
+        /* ── CTA ── */
+        .final-cta {
+            background: var(--charcoal);
+            color: #fff;
+            text-align: center;
+        }
+
+        .final-cta h2 { color: #fff; }
+
+        .final-cta .section-desc {
+            color: #999;
+            margin: 0 auto 2rem;
+        }
+
+        /* ── Footer ── */
+        footer {
+            background: var(--charcoal);
+            border-top: 1px solid #333;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copy {
+            color: #666;
+            font-size: 0.82rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.82rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover { color: var(--rust-light); }
+
+        /* ── Animations ── */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(24px);
+            animation: fadeUp 0.7s ease forwards;
+        }
+
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .d1 { animation-delay: 0.1s; }
+        .d2 { animation-delay: 0.2s; }
+        .d3 { animation-delay: 0.3s; }
+        .d4 { animation-delay: 0.4s; }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .ps-grid, .services-grid, .steps, .testi-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .trust-bar { flex-wrap: wrap; gap: 1.5rem; }
+            .step-connector { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Nav -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <div class="logo">Other Guys <em>IT</em></div>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#how">How It Works</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#cta" class="btn-warm">Free IT Assessment</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-chip fade-up">🏢 Managed IT for Texas Small Businesses</div>
+            <h1 class="fade-up d1">We're the IT guys<br>so <span class="underline-accent">you don't have to be</span></h1>
+            <p class="hero-desc fade-up d2">Your business runs on technology. But you didn't start a business to manage servers, fight ransomware, or troubleshoot printers. That's what we're here for.</p>
+            <div class="hero-ctas fade-up d3">
+                <a href="#cta" class="btn-warm" style="padding: 0.85rem 2rem; font-size: 1rem;">Get Your Free IT Assessment →</a>
+                <a href="tel:+1XXXXXXXXXX" class="btn-ghost">Call Us Today</a>
+            </div>
+            <div class="trust-bar fade-up d4">
+                <div class="trust-item">
+                    <div class="trust-num">99.9%</div>
+                    <div class="trust-label">Uptime</div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-num">&lt;15 min</div>
+                    <div class="trust-label">Response</div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-num">100%</div>
+                    <div class="trust-label">Texas-Based</div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-num">$0</div>
+                    <div class="trust-label">Hidden Fees</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem / Solution -->
+    <section class="problem-section section-pad">
+        <div class="container">
+            <div class="section-tag" style="color: var(--gold);">Sound Familiar?</div>
+            <h2 style="color:#fff">The break-fix cycle is bleeding you dry</h2>
+
+            <div class="ps-grid">
+                <div class="ps-col">
+                    <h3 style="color: var(--rust-light);">❌ Without managed IT</h3>
+                    <ul class="ps-list problems">
+                        <li><span class="icon">💸</span> Unpredictable emergency repair bills every month</li>
+                        <li><span class="icon">😰</span> You're the de facto IT person (and you hate it)</li>
+                        <li><span class="icon">🔓</span> Your data is one phishing email away from disaster</li>
+                        <li><span class="icon">⏳</span> Downtime costs you revenue — and client trust</li>
+                        <li><span class="icon">🤷</span> No plan, no backups, no idea what's actually going on</li>
+                    </ul>
+                </div>
+                <div class="ps-col">
+                    <h3 style="color: var(--teal-light);">✓ With Other Guys IT</h3>
+                    <ul class="ps-list solutions">
+                        <li><span class="icon">📊</span> One predictable monthly fee — no surprises, ever</li>
+                        <li><span class="icon">🧑‍💻</span> A full IT team on call, without hiring anyone</li>
+                        <li><span class="icon">🛡️</span> Enterprise-grade security protecting your business 24/7</li>
+                        <li><span class="icon">⚡</span> Proactive monitoring catches problems before they hit</li>
+                        <li><span class="icon">📋</span> Clear roadmap, regular reports, total transparency</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="section-pad">
+        <div class="container">
+            <div class="section-tag">What We Handle</div>
+            <h2>Full-stack IT, flat monthly price</h2>
+            <p class="section-desc">Everything your business needs to run securely and smoothly — managed, monitored, and maintained by us.</p>
+
+            <div class="services-grid">
+                <div class="svc-card">
+                    <span class="svc-emoji">🖥️</span>
+                    <h3>Managed IT Services</h3>
+                    <p>24/7 monitoring, proactive maintenance, help desk support, and strategic IT planning. We're your entire IT department.</p>
+                </div>
+                <div class="svc-card">
+                    <span class="svc-emoji">🛡️</span>
+                    <h3>Cybersecurity</h3>
+                    <p>Endpoint protection, firewall management, threat detection, security awareness training, and incident response.</p>
+                </div>
+                <div class="svc-card">
+                    <span class="svc-emoji">☁️</span>
+                    <h3>Cloud Solutions</h3>
+                    <p>Cloud migration, Microsoft 365, hybrid infrastructure, backup & disaster recovery. Your data — always available, always safe.</p>
+                </div>
+                <div class="svc-card">
+                    <span class="svc-emoji">📞</span>
+                    <h3>VoIP Phone Systems</h3>
+                    <p>Modern business phone systems with crystal clear quality. Work from anywhere — desk, laptop, or mobile.</p>
+                </div>
+                <div class="svc-card">
+                    <span class="svc-emoji">🌐</span>
+                    <h3>Networking</h3>
+                    <p>Network design, Wi-Fi optimization, structured cabling, and performance monitoring for reliable connectivity.</p>
+                </div>
+                <div class="svc-card">
+                    <span class="svc-emoji">🤝</span>
+                    <h3>Co-Managed IT</h3>
+                    <p>Already have IT staff? We fill the gaps — extra expertise, better tools, after-hours coverage. Augment, don't replace.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it works -->
+    <section id="how" class="how-section section-pad">
+        <div class="container" style="text-align:center;">
+            <div class="section-tag">How It Works</div>
+            <h2>Three steps to IT peace of mind</h2>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <div class="step-connector"></div>
+                    <h3>Free Assessment</h3>
+                    <p>We audit your current setup — network, security, backups, everything. You get an honest report, no sales pitch.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <div class="step-connector"></div>
+                    <h3>Custom Plan</h3>
+                    <p>Based on your needs and budget, we build a plan that covers exactly what your business requires. Nothing more, nothing less.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <h3>We Handle Everything</h3>
+                    <p>You go back to running your business. We handle the IT — monitoring, maintenance, support, security, all of it. Done.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="section-pad">
+        <div class="container">
+            <div class="section-tag">Client Stories</div>
+            <h2>They stopped worrying about IT</h2>
+
+            <div class="testi-grid">
+                <div class="testi-card">
+                    <blockquote>"I used to get a pit in my stomach every time someone said <strong>'the internet is down.'</strong> That hasn't happened once since we switched to Other Guys. Not once."</blockquote>
+                    <div class="testi-footer">
+                        <div class="testi-avatar">SR</div>
+                        <div>
+                            <div class="testi-name">Sarah R.</div>
+                            <div class="testi-role">Office Manager, Medical Practice</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testi-card">
+                    <blockquote>"We were paying $250/hour for break-fix IT calls. Now we pay less per month than we used to pay for <strong>one emergency visit.</strong> And nothing breaks anymore."</blockquote>
+                    <div class="testi-footer">
+                        <div class="testi-avatar">MJ</div>
+                        <div>
+                            <div class="testi-name">Marcus J.</div>
+                            <div class="testi-role">Owner, Real Estate Brokerage</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testi-card">
+                    <blockquote>"They set up our new phone system over a weekend. Monday morning <strong>everything just worked.</strong> Our clients didn't notice a thing — which is exactly what we wanted."</blockquote>
+                    <div class="testi-footer">
+                        <div class="testi-avatar">LP</div>
+                        <div>
+                            <div class="testi-name">Lisa P.</div>
+                            <div class="testi-role">Managing Partner, CPA Firm</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testi-card">
+                    <blockquote>"As a small business owner, I can't afford a full-time IT person. Other Guys gave me <strong>an entire IT department</strong> for less than half what a single hire would cost."</blockquote>
+                    <div class="testi-footer">
+                        <div class="testi-avatar">AW</div>
+                        <div>
+                            <div class="testi-name">Andre W.</div>
+                            <div class="testi-role">Owner, Construction Company</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="cta" class="final-cta section-pad">
+        <div class="container">
+            <div class="section-tag" style="color: var(--gold);">Let's Talk</div>
+            <h2>Your free IT assessment is<br>one conversation away</h2>
+            <p class="section-desc">No contracts. No commitments. We'll look at your setup, tell you where the risks are, and give you a straight answer on what it costs to fix them. If we're not the right fit, we'll tell you.</p>
+            <a href="#" class="btn-warm" style="padding: 1rem 2.5rem; font-size: 1.05rem;">Schedule My Free Assessment →</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-copy">© 2025 Other Guys IT, LLC · Texas</div>
+            <ul class="footer-links">
+                <li><a href="#">Privacy</a></li>
+                <li><a href="#">Terms</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+        });
+    </script>
+</body>
+</html>

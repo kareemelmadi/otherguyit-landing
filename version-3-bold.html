@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Other Guys IT — Your IT Department Called. It's Us.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #0A0A0A;
+            --off-black: #141414;
+            --card: #1A1A1A;
+            --border: #2A2A2A;
+            --white: #FAFAFA;
+            --dim: #888;
+            --orange: #FF5722;
+            --orange-glow: rgba(255, 87, 34, 0.15);
+            --blue: #4FC3F7;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* ── Glow blob ── */
+        .glow {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--orange-glow) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+            pointer-events: none;
+            z-index: 0;
+            animation: drift 12s ease-in-out infinite alternate;
+        }
+
+        @keyframes drift {
+            to { transform: translate(-100px, 80px); }
+        }
+
+        /* ── Nav ── */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            z-index: 100;
+            padding: 1rem 2rem;
+            transition: all 0.4s;
+        }
+
+        nav.scrolled {
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.6rem;
+            font-weight: 400;
+        }
+
+        .logo span { color: var(--orange); }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--dim);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.88rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--white); }
+
+        .btn-fire {
+            background: var(--orange);
+            color: #fff;
+            padding: 0.7rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.88rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-fire:hover {
+            box-shadow: 0 0 30px var(--orange-glow), 0 8px 24px rgba(255, 87, 34, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .btn-dark {
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: var(--white);
+            padding: 0.7rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-dark:hover {
+            border-color: var(--orange);
+            background: var(--off-black);
+        }
+
+        /* ── Hero ── */
+        .hero {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 2rem 4rem;
+        }
+
+        .hero-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .hero-upper {
+            max-width: 800px;
+        }
+
+        .hero-mono {
+            font-family: 'Geist Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--orange);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(3.5rem, 8vw, 7rem);
+            font-weight: 400;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--orange);
+        }
+
+        .hero-body {
+            font-size: 1.15rem;
+            color: var(--dim);
+            line-height: 1.7;
+            max-width: 550px;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* ── Divider line ── */
+        .divider {
+            width: 100%;
+            height: 1px;
+            background: var(--border);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ── Marquee ── */
+        .marquee-wrap {
+            overflow: hidden;
+            border-bottom: 1px solid var(--border);
+            border-top: 1px solid var(--border);
+            position: relative;
+            z-index: 2;
+        }
+
+        .marquee {
+            display: flex;
+            gap: 4rem;
+            padding: 1.25rem 0;
+            animation: scroll-left 30s linear infinite;
+            width: max-content;
+        }
+
+        .marquee span {
+            font-family: 'Geist Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--dim);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            white-space: nowrap;
+        }
+
+        .marquee .dot {
+            color: var(--orange);
+        }
+
+        @keyframes scroll-left {
+            to { transform: translateX(-50%); }
+        }
+
+        /* ── Section ── */
+        section { position: relative; z-index: 2; }
+        .section-pad { padding: 6rem 2rem; }
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        .section-mono {
+            font-family: 'Geist Mono', monospace;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--orange);
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .section-sub {
+            color: var(--dim);
+            font-size: 1rem;
+            max-width: 500px;
+            line-height: 1.7;
+        }
+
+        /* ── Services (bento grid) ── */
+        .bento {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: auto auto;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .bento-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.35s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bento-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%; height: 2px;
+            background: var(--orange);
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+
+        .bento-card:hover::after { transform: scaleX(1); }
+
+        .bento-card:hover {
+            border-color: #3A3A3A;
+            background: var(--off-black);
+        }
+
+        .bento-card.wide {
+            grid-column: span 2;
+        }
+
+        .bento-icon {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .bento-card h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .bento-card p {
+            color: var(--dim);
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+
+        /* ── Numbers ── */
+        .numbers-section {
+            background: var(--off-black);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .numbers-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .num-item {
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .num-val {
+            font-family: 'Instrument Serif', serif;
+            font-size: 3.5rem;
+            color: var(--orange);
+            line-height: 1;
+        }
+
+        .num-label {
+            font-family: 'Geist Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--dim);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 0.5rem;
+        }
+
+        /* ── Process ── */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .process-step {
+            padding: 2rem;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            position: relative;
+        }
+
+        .process-num {
+            font-family: 'Instrument Serif', serif;
+            font-size: 3rem;
+            color: var(--orange);
+            opacity: 0.3;
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+        }
+
+        .process-step h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .process-step p {
+            color: var(--dim);
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+
+        /* ── Testimonials ── */
+        .testi-section { background: var(--off-black); }
+
+        .testi-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .t-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .t-quote {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            line-height: 1.6;
+            color: #ccc;
+            margin-bottom: 1.5rem;
+        }
+
+        .t-quote strong {
+            color: var(--orange);
+            font-style: normal;
+        }
+
+        .t-author {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .t-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--orange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.75rem;
+            color: #fff;
+        }
+
+        .t-name { font-weight: 600; font-size: 0.88rem; }
+        .t-role { color: var(--dim); font-size: 0.78rem; }
+
+        /* ── Final CTA ── */
+        .final-cta {
+            text-align: center;
+            position: relative;
+        }
+
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 500px; height: 500px;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, var(--orange-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .final-cta h2 { margin-bottom: 1rem; }
+
+        .final-cta .section-sub {
+            margin: 0 auto 2.5rem;
+        }
+
+        /* ── Footer ── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copy {
+            color: #555;
+            font-size: 0.8rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: #555;
+            text-decoration: none;
+            font-size: 0.8rem;
+        }
+
+        .footer-links a:hover { color: var(--orange); }
+
+        /* ── Animations ── */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(24px);
+            animation: fadeUp 0.7s ease forwards;
+        }
+
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .d1 { animation-delay: 0.15s; }
+        .d2 { animation-delay: 0.3s; }
+        .d3 { animation-delay: 0.45s; }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .bento { grid-template-columns: 1fr; }
+            .bento-card.wide { grid-column: span 1; }
+            .numbers-grid { grid-template-columns: repeat(2, 1fr); }
+            .process-grid { grid-template-columns: 1fr; }
+            .testi-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="glow"></div>
+
+    <!-- Nav -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <div class="logo">Other Guys <span>IT</span></div>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#cta" class="btn-fire">Free Audit →</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-upper">
+                <div class="hero-mono fade-up">// Managed IT · Texas</div>
+                <h1 class="fade-up d1">Your IT department<br>called. <em>It's us.</em></h1>
+                <p class="hero-body fade-up d2">Servers, security, phones, cloud, networking — everything your business needs to run, managed by people who actually know what they're doing. One price. Zero drama.</p>
+                <div class="hero-ctas fade-up d3">
+                    <a href="#cta" class="btn-fire" style="padding:0.85rem 2rem;font-size:1rem;">Get Free IT Audit →</a>
+                    <a href="tel:+1XXXXXXXXXX" class="btn-dark">📞 Talk to a Human</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="marquee-wrap">
+        <div class="marquee">
+            <span>Managed IT Services</span><span class="dot">●</span>
+            <span>Cybersecurity</span><span class="dot">●</span>
+            <span>Cloud Infrastructure</span><span class="dot">●</span>
+            <span>VoIP Phone Systems</span><span class="dot">●</span>
+            <span>Network Design</span><span class="dot">●</span>
+            <span>Backup & Recovery</span><span class="dot">●</span>
+            <span>24/7 Monitoring</span><span class="dot">●</span>
+            <span>Co-Managed IT</span><span class="dot">●</span>
+            <span>Managed IT Services</span><span class="dot">●</span>
+            <span>Cybersecurity</span><span class="dot">●</span>
+            <span>Cloud Infrastructure</span><span class="dot">●</span>
+            <span>VoIP Phone Systems</span><span class="dot">●</span>
+            <span>Network Design</span><span class="dot">●</span>
+            <span>Backup & Recovery</span><span class="dot">●</span>
+            <span>24/7 Monitoring</span><span class="dot">●</span>
+            <span>Co-Managed IT</span><span class="dot">●</span>
+        </div>
+    </div>
+
+    <!-- Services -->
+    <section id="services" class="section-pad">
+        <div class="container">
+            <div class="section-mono">Services</div>
+            <h2>Everything IT.<br>Nothing else to think about.</h2>
+            <p class="section-sub">One flat monthly fee. Full IT coverage. No hourly billing, no surprise invoices, no "we found another problem."</p>
+
+            <div class="bento">
+                <div class="bento-card wide">
+                    <div class="bento-icon">🛡️</div>
+                    <h3>Cybersecurity & Threat Protection</h3>
+                    <p>Next-generation endpoint protection, firewall management, 24/7 threat monitoring, dark web scanning, and security awareness training. The question isn't if you'll be targeted — it's when. We make sure you're ready.</p>
+                </div>
+                <div class="bento-card">
+                    <div class="bento-icon">🖥️</div>
+                    <h3>Managed IT</h3>
+                    <p>Your entire IT department — monitoring, maintenance, help desk, strategic planning — without hiring a single person.</p>
+                </div>
+                <div class="bento-card">
+                    <div class="bento-icon">☁️</div>
+                    <h3>Cloud & Backup</h3>
+                    <p>Cloud migration, Microsoft 365, hybrid infrastructure, disaster recovery. Your data — always available, always recoverable.</p>
+                </div>
+                <div class="bento-card wide">
+                    <div class="bento-icon">📞</div>
+                    <h3>VoIP & Unified Communications</h3>
+                    <p>Modern business phone systems that go wherever your team goes. Crystal clear calls, video conferencing, mobile integration, advanced call routing — all on one platform. Desk phones optional.</p>
+                </div>
+                <div class="bento-card">
+                    <div class="bento-icon">🌐</div>
+                    <h3>Networking</h3>
+                    <p>Enterprise Wi-Fi, structured cabling, network design and optimization. Fast, reliable, secure — pick all three.</p>
+                </div>
+                <div class="bento-card">
+                    <div class="bento-icon">🤝</div>
+                    <h3>Co-Managed IT</h3>
+                    <p>Already have IT staff? We augment them with expertise, tools, and after-hours coverage they can't get alone.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Numbers -->
+    <section class="numbers-section section-pad">
+        <div class="container">
+            <div class="numbers-grid">
+                <div class="num-item">
+                    <div class="num-val">99.9%</div>
+                    <div class="num-label">Guaranteed Uptime</div>
+                </div>
+                <div class="num-item">
+                    <div class="num-val">&lt;15m</div>
+                    <div class="num-label">Response Time</div>
+                </div>
+                <div class="num-item">
+                    <div class="num-val">24/7</div>
+                    <div class="num-label">Monitoring</div>
+                </div>
+                <div class="num-item">
+                    <div class="num-val">$0</div>
+                    <div class="num-label">Hidden Fees</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section id="process" class="section-pad">
+        <div class="container">
+            <div class="section-mono">Process</div>
+            <h2>Three steps. Then you<br>never think about IT again.</h2>
+
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="process-num">01</div>
+                    <h3>Free IT Audit</h3>
+                    <p>We assess your current infrastructure — security gaps, outdated hardware, backup status, network performance. You get an honest report with zero obligation.</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-num">02</div>
+                    <h3>Custom Plan</h3>
+                    <p>We design a plan around your actual needs and budget. Enterprise-grade solutions, small business pricing. No upselling, no fluff.</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-num">03</div>
+                    <h3>We Run IT</h3>
+                    <p>We handle everything. Monitoring, maintenance, support, security — 24/7. You focus on your business. We focus on making sure nothing breaks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="reviews" class="testi-section section-pad">
+        <div class="container">
+            <div class="section-mono">Clients</div>
+            <h2>Words from businesses<br>that <em style="font-family:'Instrument Serif',serif;color:var(--orange)">stopped worrying</em></h2>
+
+            <div class="testi-grid">
+                <div class="t-card">
+                    <div class="t-quote">"We went from <strong>$300/hour emergency calls</strong> to one flat fee. Eight months in — not a single emergency. That's not luck, that's Other Guys."</div>
+                    <div class="t-author">
+                        <div class="t-avatar">KR</div>
+                        <div>
+                            <div class="t-name">Karen R.</div>
+                            <div class="t-role">Dental Practice Owner</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="t-card">
+                    <div class="t-quote">"Cloud migration, new phone system, full security overhaul — <strong>done in two weeks</strong>. Our team didn't miss a single billable hour."</div>
+                    <div class="t-author">
+                        <div class="t-avatar">TM</div>
+                        <div>
+                            <div class="t-name">Tom M.</div>
+                            <div class="t-role">Managing Partner, Law Firm</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="t-card">
+                    <div class="t-quote">"I called at 11pm on a Saturday because our server went down. <strong>A real person picked up.</strong> Fixed in 20 minutes. That's why we stay."</div>
+                    <div class="t-author">
+                        <div class="t-avatar">PJ</div>
+                        <div>
+                            <div class="t-name">Patricia J.</div>
+                            <div class="t-role">Owner, Accounting Firm</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="cta" class="final-cta section-pad">
+        <div class="container" style="position:relative;z-index:2;">
+            <div class="section-mono">Ready?</div>
+            <h2>Get your free audit.<br>No pitch. Just <em style="font-family:'Instrument Serif',serif;color:var(--orange)">truth.</em></h2>
+            <p class="section-sub" style="margin:0 auto 2rem;">We'll look at your setup, tell you where you're exposed, and give you a straight answer on what it takes to fix it. No contracts, no commitments.</p>
+            <a href="#" class="btn-fire" style="padding:1rem 2.5rem;font-size:1.05rem;">Schedule My Free Audit →</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-copy">© 2025 Other Guys IT, LLC · Texas</div>
+            <ul class="footer-links">
+                <li><a href="#">Privacy</a></li>
+                <li><a href="#">Terms</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+        });
+    </script>
+</body>
+</html>

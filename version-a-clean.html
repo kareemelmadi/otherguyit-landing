@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Other Guys IT — Free IT Assessment (Version A: Clean Light)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  :root {
+    --navy: #1a2332;
+    --dark: #2d3748;
+    --accent: #2563eb;
+    --accent-hover: #1d4ed8;
+    --green: #10b981;
+    --orange: #f59e0b;
+    --red: #ef4444;
+    --light-bg: #f8fafc;
+    --card-bg: #ffffff;
+    --section-alt: #f1f5f9;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text);
+    background: #ffffff;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* TOP BAR */
+  .top-bar {
+    background: var(--navy);
+    color: white;
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+  .top-bar a {
+    color: #93c5fd;
+    text-decoration: none;
+    font-weight: 700;
+  }
+  .top-bar a:hover { text-decoration: underline; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #ffffff 0%, #f0f4ff 50%, #e8f0fe 100%);
+    padding: 80px 20px 60px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-badge {
+    display: inline-block;
+    background: #dbeafe;
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--navy);
+    max-width: 800px;
+    margin: 0 auto 20px;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero p {
+    font-size: 18px;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto 32px;
+    line-height: 1.7;
+  }
+  .hero-cta {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    padding: 16px 40px;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+  }
+  .hero-cta:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+  }
+  .hero-sub {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 12px;
+  }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: var(--navy);
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    text-align: center;
+    color: white;
+  }
+  .stat-number {
+    font-size: 36px;
+    font-weight: 900;
+    color: #60a5fa;
+  }
+  .stat-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #94a3b8;
+    margin-top: 4px;
+    font-weight: 600;
+  }
+
+  /* SECTIONS */
+  .section {
+    padding: 80px 20px;
+  }
+  .section-alt { background: var(--section-alt); }
+  .section-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  .section h2 {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 800;
+    color: var(--navy);
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 48px;
+    line-height: 1.2;
+  }
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* PAIN POINTS */
+  .pain-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .pain-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--dark);
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .section-alt .pain-card { background: white; }
+  .pain-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+
+  /* SERVICES */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .service-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px 24px;
+    text-align: center;
+  }
+  .service-icon {
+    font-size: 36px;
+    margin-bottom: 16px;
+  }
+  .service-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--navy);
+  }
+  .service-card p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* INDUSTRIES */
+  .industries {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .industry-tag {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 12px 24px;
+    border-radius: 100px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--dark);
+  }
+
+  /* WHY US */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .why-card {
+    text-align: center;
+    padding: 32px 20px;
+    background: white;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+  }
+  .why-number {
+    font-size: 42px;
+    font-weight: 900;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .why-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .why-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* TESTIMONIALS */
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .testimonial-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+  }
+  .stars { color: var(--orange); font-size: 18px; margin-bottom: 16px; }
+  .testimonial-card blockquote {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--dark);
+    margin-bottom: 16px;
+    font-style: italic;
+  }
+  .testimonial-author {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+
+  /* PRICING */
+  .pricing-box {
+    max-width: 500px;
+    margin: 0 auto;
+    background: white;
+    border: 2px solid var(--accent);
+    border-radius: 20px;
+    padding: 48px 40px;
+    text-align: center;
+  }
+  .pricing-amount {
+    font-size: 64px;
+    font-weight: 900;
+    color: var(--accent);
+  }
+  .pricing-per {
+    font-size: 16px;
+    color: var(--text-muted);
+    margin-bottom: 32px;
+  }
+  .pricing-list {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 32px;
+  }
+  .pricing-list li {
+    padding: 8px 0;
+    font-size: 15px;
+    color: var(--dark);
+    border-bottom: 1px solid var(--border);
+  }
+  .pricing-list li:last-child { border: none; }
+  .pricing-list li::before {
+    content: '✓ ';
+    color: var(--green);
+    font-weight: 700;
+  }
+
+  /* CTA BOTTOM */
+  .cta-section {
+    background: var(--navy);
+    padding: 80px 20px;
+    text-align: center;
+    color: white;
+  }
+  .cta-section h2 {
+    color: white;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 800;
+    margin-bottom: 16px;
+  }
+  .cta-section p {
+    color: #94a3b8;
+    font-size: 17px;
+    margin-bottom: 32px;
+  }
+  .cta-section .hero-cta {
+    background: white;
+    color: var(--accent);
+  }
+  .cta-section .hero-cta:hover {
+    background: #f0f4ff;
+  }
+  .cta-phone {
+    margin-top: 16px;
+    font-size: 15px;
+    color: #94a3b8;
+  }
+  .cta-phone a { color: #60a5fa; text-decoration: none; }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 13px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+  }
+
+  /* FAQ */
+  .faq-list {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+    padding: 20px 0;
+  }
+  .faq-q {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--navy);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .faq-q::after { content: '›'; font-size: 24px; color: var(--text-muted); transition: transform 0.2s; }
+  .faq-q.open::after { transform: rotate(90deg); }
+  .faq-a {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s, padding 0.3s;
+  }
+  .faq-a.open {
+    max-height: 200px;
+    padding-top: 12px;
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  📞 Talk to a real human: <a href="tel:9722443009">(972) 244-3009</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Houston & The Woodlands</div>
+  <h1>Your IT Provider Doesn't Pick Up the Phone. <span>We Do.</span></h1>
+  <p>Flat-rate managed IT for Houston & The Woodlands businesses. No surprise bills. No hold music. No excuses.</p>
+  <a href="#book" class="hero-cta">Get Your Free IT Assessment →</a>
+  <p class="hero-sub">30-minute call · No commitment · We'll tell you if you even need us</p>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-number">99.9%</div>
+    <div class="stat-label">Uptime</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">100+</div>
+    <div class="stat-label">Businesses</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">300+</div>
+    <div class="stat-label">Devices</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">15min</div>
+    <div class="stat-label">Response</div>
+  </div>
+</div>
+
+<!-- PAIN POINTS -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-label">Sound Familiar?</div>
+    <h2>Is This You Right Now?</h2>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <span class="pain-icon">🕐</span>
+        <span>You submitted a ticket 3 days ago and you're still waiting for someone to acknowledge it exists.</span>
+      </div>
+      <div class="pain-card">
+        <span class="pain-icon">😰</span>
+        <span>You're not sure if your data is backed up — and the thought of ransomware keeps you up at night.</span>
+      </div>
+      <div class="pain-card">
+        <span class="pain-icon">💸</span>
+        <span>Your IT bill changes every month and nobody can explain why it went up $2,000 in March.</span>
+      </div>
+      <div class="pain-card">
+        <span class="pain-icon">🤷</span>
+        <span>You call your IT guy and get voicemail. Every. Single. Time. Then a callback 48 hours later.</span>
+      </div>
+      <div class="pain-card">
+        <span class="pain-icon">🏥</span>
+        <span>You need HIPAA compliance but your current provider just shrugs and says "you're probably fine."</span>
+      </div>
+      <div class="pain-card">
+        <span class="pain-icon">🔥</span>
+        <span>You're the unofficial IT department even though you were hired to run the business, not fix printers.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">What We Do</div>
+    <h2>Everything Your Business Needs to Stay Running</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🛡️</div>
+        <h3>Managed IT & Support</h3>
+        <p>24/7 monitoring, helpdesk, and on-site support. We catch problems before you notice them.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔒</div>
+        <h3>Cybersecurity</h3>
+        <p>Endpoint protection, threat detection, employee training, and incident response. Sleep better tonight.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">☁️</div>
+        <h3>Cloud & Backup</h3>
+        <p>Automatic cloud backups, disaster recovery, and migration. Your data survives anything.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📞</div>
+        <h3>VoIP & Network</h3>
+        <p>Business phone systems and rock-solid network infrastructure designed for zero downtime.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-label">Who We Serve</div>
+    <h2>Built for Houston Businesses Like Yours</h2>
+    <div class="industries">
+      <span class="industry-tag">🏢 Small Business</span>
+      <span class="industry-tag">🏥 Medical & Dental</span>
+      <span class="industry-tag">📦 Warehouse & Logistics</span>
+      <span class="industry-tag">🏘️ Property & Rental</span>
+      <span class="industry-tag">⚖️ Law Firms</span>
+      <span class="industry-tag">💼 Professional Services</span>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">Why Other Guys IT</div>
+    <h2>Not Your Average IT Guys</h2>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-number">$100</div>
+        <div class="why-label">Flat Rate Per Person</div>
+        <div class="why-desc">No hidden fees. No surcharges. One price, everything included.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-number">24/7</div>
+        <div class="why-label">Real Human Support</div>
+        <div class="why-desc">Call us at 2 AM on a Saturday. Someone picks up. That's the promise.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-number">15min</div>
+        <div class="why-label">Average Response Time</div>
+        <div class="why-desc">Not 15 hours. Not "next business day." Fifteen minutes or less.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-number">Local</div>
+        <div class="why-label">Houston & The Woodlands</div>
+        <div class="why-desc">We're your neighbors, not a call center in another time zone.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-label">What Clients Say</div>
+    <h2>Businesses That Switched & Never Looked Back</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"We switched from a big-name MSP and the difference was night and day. Our tickets get resolved the same day — sometimes within the hour."</blockquote>
+        <div class="testimonial-author">— Dr. Sarah M., Medical Practice</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"I used to dread calling our IT company because I knew I'd be on hold for 20 minutes. Now I text Kareem directly and it's handled."</blockquote>
+        <div class="testimonial-author">— James R., Logistics Company</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <blockquote>"They found security gaps our last provider missed for two years. Set up proper backups, got us HIPAA compliant, and our monthly bill actually went down."</blockquote>
+        <div class="testimonial-author">— Michelle T., Dental Office</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">Simple Pricing</div>
+    <h2>One Price. Everything Included.</h2>
+    <div class="pricing-box">
+      <div class="pricing-amount">$100</div>
+      <div class="pricing-per">per team member / month</div>
+      <ul class="pricing-list">
+        <li>24/7 monitoring & helpdesk support</li>
+        <li>Cybersecurity & endpoint protection</li>
+        <li>Cloud backup & disaster recovery</li>
+        <li>On-site support when needed</li>
+        <li>VoIP & network management</li>
+        <li>HIPAA compliance (healthcare clients)</li>
+        <li>Employee security awareness training</li>
+        <li>Vendor management (we deal with your software vendors)</li>
+      </ul>
+      <a href="#book" class="hero-cta">See If We're a Fit →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-label">FAQ</div>
+    <h2>Straight Answers. No Jargon.</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">Is there a long-term contract?</div>
+        <div class="faq-a">No long-term contracts. We earn your business every month. If we're not delivering, you can walk away. That's how confident we are.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">What size businesses do you work with?</div>
+        <div class="faq-a">Primarily small to medium businesses — 5 to 200 employees. If you have a team, we can support it.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">What happens during onboarding?</div>
+        <div class="faq-a">We do a full audit of your current setup, document everything, fix immediate issues, and get you on our monitoring platform — usually within 1-2 weeks.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">Do you cover on-site or is everything remote?</div>
+        <div class="faq-a">Both. Most issues are resolved remotely within minutes, but when you need someone on-site, we're there. Houston and The Woodlands area.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">Can you help with HIPAA compliance?</div>
+        <div class="faq-a">Absolutely. We serve multiple medical and dental practices. HIPAA compliance is built into our service for healthcare clients.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">What if we already have an IT person?</div>
+        <div class="faq-a">Great — we do co-managed IT. We augment your existing team with 24/7 monitoring, cybersecurity, and backup support so your IT person can focus on strategic projects.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM CTA -->
+<section class="cta-section" id="book">
+  <h2>Let's Find Out If We're the Right Fit</h2>
+  <p>Pick a time below. 30 minutes. No pitch deck. Just an honest conversation about your IT.</p>
+  <a href="#" class="hero-cta">Schedule Your Free Assessment →</a>
+  <div class="cta-phone">Prefer to talk now? Call <a href="tel:9722443009">(972) 244-3009</a></div>
+</section>
+
+<footer>
+  © 2026 Other Guys IT · The Woodlands & Houston, TX · (972) 244-3009 · otherguys.tech
+</footer>
+
+</body>
+</html>
