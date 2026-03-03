@@ -1,25 +1,622 @@
 <!DOCTYPE html>
-<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Other Guys IT — Landing Page Concepts</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-body{font-family:'DM Sans',system-ui,sans-serif;background:#0B1D3A;color:#eee;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;gap:1.5rem;margin:0;padding:2rem;}
-h1{font-size:1.8rem;margin-bottom:0;letter-spacing:-0.02em;}
-.sub{color:#8A95A8;margin-bottom:1.5rem;font-size:0.95rem;}
-.cards{display:flex;gap:1.25rem;flex-wrap:wrap;justify-content:center;}
-a.card{display:block;background:rgba(17,35,71,0.5);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:2rem;width:300px;text-decoration:none;color:#eee;transition:all 0.3s;}
-a.card:hover{border-color:#00E5A0;transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,229,160,0.1);}
-a.card h2{font-size:1.15rem;margin:0 0 0.5rem;font-weight:700;}
-a.card p{color:#8A95A8;font-size:0.88rem;margin:0;line-height:1.5;}
-.tag{display:inline-block;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;padding:0.25rem 0.6rem;border-radius:4px;margin-bottom:0.75rem;}
-.tag-dark{background:rgba(0,229,160,0.12);color:#00E5A0;}
-.tag-warm{background:rgba(196,85,45,0.15);color:#E8754E;}
-.tag-light{background:rgba(27,95,237,0.15);color:#4FC3F7;}
-</style></head><body>
-<h1>Other Guys IT — Landing Pages</h1>
-<p class="sub">Three creative directions. Click to preview each.</p>
-<div class="cards">
-<a class="card" href="version-1-confidence.html"><div class="tag tag-dark">Dark</div><h2>V1 — Confidence</h2><p>Dark navy + electric green. Terminal mockup hero. Tech-forward, developer energy. Says "we know exactly what we're doing."</p></a>
-<a class="card" href="version-2-warmth.html"><div class="tag tag-warm">Warm</div><h2>V2 — Warmth</h2><p>Sand + rust tones. Serif accents. Approachable, trustworthy, human. Feels like a handshake from someone you trust.</p></a>
-<a class="card" href="version-3-light.html"><div class="tag tag-light">Light</div><h2>V3 — Clean & Light</h2><p>White + blue. Crisp, professional, modern. Fraunces serif headlines. The one that looks like it cost $15K.</p></a>
-</div>
-</body></html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free IT Assessment | Other Guys IT | Houston Managed IT</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Literata:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0B1D3A;
+            --navy-mid: #112347;
+            --navy-light: #1A3260;
+            --electric: #00E5A0;
+            --electric-dim: #00C98B;
+            --electric-glow: rgba(0, 229, 160, 0.12);
+            --warm: #FF6F3C;
+            --slate: #8A95A8;
+            --slate-light: #A8B2C1;
+            --white: #FFFFFF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--navy);
+            color: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* ── Grid background ── */
+        .grid-bg {
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px);
+            background-size: 64px 64px;
+            z-index: 0; pointer-events: none;
+        }
+        .grid-bg::before {
+            content: ''; position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: radial-gradient(circle at center, rgba(255,255,255,0.12) 1px, transparent 1px);
+            background-size: 64px 64px;
+        }
+        .grid-bg::after {
+            content: ''; position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background:
+                radial-gradient(ellipse at 50% 0%, rgba(0,229,160,0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 30% 50%, rgba(0,160,229,0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, transparent 0%, rgba(11,29,58,0.8) 100%);
+        }
+
+        /* ── Floating orbs ── */
+        .orb { position: fixed; border-radius: 50%; pointer-events: none; z-index: 0; filter: blur(80px); }
+        .orb-1 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(0,229,160,0.08) 0%, transparent 70%); top: -150px; right: -100px; animation: float-1 18s ease-in-out infinite; }
+        .orb-2 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(0,160,229,0.06) 0%, transparent 70%); bottom: 10%; left: -100px; animation: float-2 22s ease-in-out infinite; }
+        .orb-3 { width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,111,60,0.04) 0%, transparent 70%); top: 40%; right: 10%; animation: float-3 15s ease-in-out infinite; }
+
+        @keyframes float-1 { 0%, 100% { transform: translate(0,0); } 33% { transform: translate(-40px,30px); } 66% { transform: translate(20px,-20px); } }
+        @keyframes float-2 { 0%, 100% { transform: translate(0,0); } 33% { transform: translate(30px,-40px); } 66% { transform: translate(-20px,20px); } }
+        @keyframes float-3 { 0%, 100% { transform: translate(0,0); } 50% { transform: translate(-30px,30px); } }
+
+        /* ── Noise texture ── */
+        .noise {
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%; z-index: 1;
+            pointer-events: none; opacity: 0.035;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        /* ── NO NAV LINKS — just logo + phone + CTA ── */
+        nav {
+            position: fixed; top: 0; left: 0; width: 100%;
+            z-index: 200; padding: 1rem 2rem;
+            transition: all 0.4s ease;
+        }
+        nav.scrolled {
+            background: rgba(11,29,58,0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0,229,160,0.08);
+        }
+        .nav-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .nav-logo svg { height: 40px; width: auto; }
+        .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+        .nav-phone { color: var(--white); text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: color 0.3s; }
+        .nav-phone:hover { color: var(--electric); }
+
+        .btn-primary {
+            background: var(--electric); color: var(--navy);
+            padding: 0.7rem 1.6rem; border-radius: 8px;
+            font-weight: 700; font-size: 0.92rem;
+            text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;
+            transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+            border: none; cursor: pointer;
+        }
+        .btn-primary:hover {
+            background: var(--electric-dim); transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0,229,160,0.25);
+        }
+
+        /* ── HERO — headline left, form right ── */
+        .hero {
+            position: relative; min-height: 100vh;
+            display: flex; align-items: center;
+            padding: 8rem 2rem 4rem; z-index: 3;
+        }
+        .hero-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: 1.1fr 1fr;
+            gap: 4rem; align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: var(--electric-glow);
+            border: 1px solid rgba(0,229,160,0.15);
+            padding: 0.45rem 1rem; border-radius: 50px;
+            font-size: 0.82rem; color: var(--electric);
+            margin-bottom: 1.5rem; font-weight: 500;
+        }
+        .hero-badge::before {
+            content: ''; width: 7px; height: 7px; border-radius: 50%;
+            background: var(--electric); animation: pulse-dot 2s infinite;
+        }
+        @keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+        h1 {
+            font-size: clamp(2.8rem, 5.5vw, 4.2rem);
+            font-weight: 900; line-height: 1.08;
+            letter-spacing: -0.04em; margin-bottom: 1.5rem;
+        }
+        h1 .accent { color: var(--electric); }
+
+        .hero-sub {
+            font-size: 1.1rem; color: var(--slate-light);
+            line-height: 1.75; margin-bottom: 2rem; max-width: 480px;
+        }
+
+        .hero-phone {
+            color: var(--white); text-decoration: none;
+            font-weight: 700; font-size: 1.2rem;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            transition: color 0.3s;
+        }
+        .hero-phone:hover { color: var(--electric); }
+
+        .hero-stats {
+            display: flex; gap: 2.5rem; margin-top: 2.5rem;
+        }
+        .hero-stat-num {
+            font-size: 2rem; font-weight: 900; color: var(--electric);
+            letter-spacing: -0.03em;
+        }
+        .hero-stat-label {
+            font-size: 0.75rem; color: var(--slate);
+            text-transform: uppercase; letter-spacing: 0.12em;
+            font-weight: 500; margin-top: 0.15rem;
+        }
+
+        /* ── Form card ── */
+        .form-card {
+            background: rgba(17,35,71,0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(192,206,220,0.06);
+            border-radius: 20px;
+            padding: 2.5rem;
+            position: relative; overflow: hidden;
+            box-shadow:
+                0 0 0 1px rgba(0,229,160,0.06),
+                0 0 30px rgba(0,229,160,0.04),
+                0 40px 100px rgba(0,0,0,0.4);
+        }
+        .form-card::before {
+            content: ''; position: absolute;
+            top: -80px; left: 50%; transform: translateX(-50%);
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(0,229,160,0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .urgency-bar {
+            background: rgba(255,111,60,0.12);
+            border: 1px solid rgba(255,111,60,0.25);
+            color: var(--warm); padding: 0.65rem 1rem;
+            border-radius: 10px; font-size: 0.82rem;
+            font-weight: 600; text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-card h2 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.3rem; }
+        .form-card .form-sub { color: var(--slate); font-size: 0.88rem; margin-bottom: 1.75rem; }
+
+        .form-group { margin-bottom: 1.1rem; }
+        .form-group label {
+            display: block; font-size: 0.75rem; font-weight: 600;
+            color: var(--slate); margin-bottom: 0.4rem;
+            text-transform: uppercase; letter-spacing: 0.06em;
+        }
+        .form-group input, .form-group select {
+            width: 100%; padding: 0.8rem 1rem;
+            background: rgba(11,29,58,0.6);
+            border: 1px solid rgba(192,206,220,0.1);
+            border-radius: 10px; color: var(--white);
+            font-family: 'Outfit', sans-serif; font-size: 0.95rem;
+            outline: none; transition: border 0.3s;
+        }
+        .form-group input:focus, .form-group select:focus { border-color: var(--electric); }
+        .form-group select option { background: var(--navy); }
+        .form-group input::placeholder { color: var(--slate); opacity: 0.5; }
+
+        .submit-btn {
+            width: 100%; padding: 1rem;
+            background: var(--electric); color: var(--navy);
+            border: none; border-radius: 10px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.05rem; font-weight: 800;
+            cursor: pointer; transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+            margin-top: 0.5rem;
+        }
+        .submit-btn:hover {
+            background: var(--electric-dim); transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0,229,160,0.25);
+        }
+        .form-note { text-align: center; color: var(--slate); font-size: 0.78rem; margin-top: 0.8rem; }
+
+        /* ── Terminal ── */
+        .terminal-section {
+            position: relative; z-index: 3;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        .terminal-section .section-label {
+            font-size: 0.78rem; text-transform: uppercase;
+            letter-spacing: 0.15em; color: var(--electric);
+            font-weight: 700; margin-bottom: 0.75rem;
+        }
+        .terminal-section h2 {
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            font-weight: 800; letter-spacing: -0.03em;
+            margin-bottom: 2rem;
+        }
+        .terminal {
+            max-width: 680px; margin: 0 auto;
+            background: #0D1117;
+            border-radius: 16px; overflow: hidden;
+            box-shadow:
+                0 0 0 1px rgba(0,229,160,0.1),
+                0 0 30px rgba(0,229,160,0.06),
+                0 40px 100px rgba(0,0,0,0.5);
+            transform: perspective(1200px) rotateY(-2deg) rotateX(1deg);
+            transition: all 0.6s cubic-bezier(0.4,0,0.2,1);
+            text-align: left;
+        }
+        .terminal:hover {
+            transform: perspective(1200px) rotateY(0deg) rotateX(0deg);
+            box-shadow:
+                0 0 0 1px rgba(0,229,160,0.15),
+                0 0 60px rgba(0,229,160,0.1),
+                0 40px 100px rgba(0,0,0,0.5);
+        }
+        .terminal-bar {
+            display: flex; align-items: center; gap: 8px;
+            padding: 14px 18px;
+            background: #161B22;
+            border-bottom: 1px solid #21262D;
+        }
+        .terminal-dot { width: 12px; height: 12px; border-radius: 50%; }
+        .terminal-body {
+            padding: 1.5rem;
+            font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+            font-size: 0.82rem; line-height: 1.9; color: #E6EDF3;
+        }
+        .terminal-body .cmd { color: var(--electric); }
+        .terminal-body .flag { color: var(--warm); }
+        .terminal-body .comment { color: #484F58; }
+        .terminal-body .output { color: #8B949E; }
+        .terminal-body .success { color: #3FB950; }
+        .cursor {
+            display: inline-block; width: 8px; height: 16px;
+            background: var(--electric);
+            animation: blink 1s step-end infinite;
+            vertical-align: text-bottom; margin-left: 4px;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* ── Reviews strip ── */
+        .reviews-strip {
+            position: relative; z-index: 3;
+            background: linear-gradient(90deg, rgba(0,229,160,0.02), rgba(0,229,160,0.05), rgba(0,229,160,0.02));
+            border-top: 1px solid rgba(192,206,220,0.06);
+            border-bottom: 1px solid rgba(192,206,220,0.06);
+            padding: 4rem 2rem;
+        }
+        .reviews-strip::before {
+            content: ''; position: absolute;
+            top: 0; left: 50%; transform: translateX(-50%);
+            width: 60%; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0,229,160,0.3), transparent);
+        }
+        .reviews-strip .section-label {
+            font-size: 0.78rem; text-transform: uppercase;
+            letter-spacing: 0.15em; color: var(--electric);
+            font-weight: 700; margin-bottom: 0.75rem; text-align: center;
+        }
+        .reviews-strip h2 {
+            text-align: center; margin-bottom: 2.5rem;
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            font-weight: 800; letter-spacing: -0.03em;
+        }
+        .reviews-grid {
+            display: grid; grid-template-columns: repeat(3,1fr);
+            gap: 1.25rem; max-width: 1100px; margin: 0 auto;
+        }
+        .review-card {
+            background: rgba(17,35,71,0.3);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(192,206,220,0.05);
+            border-radius: 16px; padding: 2rem;
+            transition: all 0.4s;
+        }
+        .review-card:hover {
+            border-color: rgba(0,229,160,0.12);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+        .stars { color: #FBBF24; font-size: 0.9rem; margin-bottom: 1rem; letter-spacing: 2px; }
+        .review-card blockquote {
+            font-family: 'Literata', serif; font-style: italic;
+            color: var(--slate-light); line-height: 1.7; font-size: 0.95rem;
+            margin-bottom: 1.25rem;
+        }
+        .review-author { color: var(--slate); font-size: 0.85rem; font-weight: 600; }
+
+        /* ── Checklist section ── */
+        .checklist-section {
+            position: relative; z-index: 3;
+            padding: 4rem 2rem; text-align: center;
+        }
+        .checklist-section h2 {
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            font-weight: 800; letter-spacing: -0.03em;
+            margin-bottom: 2rem;
+        }
+        .checklist-section h2 .price-inline {
+            color: var(--electric);
+        }
+        .checklist-wrap {
+            max-width: 700px; margin: 0 auto;
+            columns: 2; column-gap: 2rem;
+            text-align: left;
+        }
+        .checklist-wrap li {
+            list-style: none; padding: 0.55rem 0;
+            color: var(--slate-light); font-size: 0.95rem;
+            break-inside: avoid;
+        }
+        .checklist-wrap li span {
+            color: var(--electric); font-weight: 700; margin-right: 0.5rem;
+        }
+
+        /* ── Bottom CTA ── */
+        .bottom-cta {
+            position: relative; z-index: 3;
+            text-align: center; padding: 3.5rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .bottom-cta p { color: var(--slate); font-size: 1rem; margin-bottom: 0.5rem; }
+        .bottom-cta a {
+            color: var(--electric); font-size: 1.4rem; font-weight: 800;
+            text-decoration: none; transition: opacity 0.3s;
+        }
+        .bottom-cta a:hover { opacity: 0.8; }
+
+        /* ── Footer ── */
+        footer {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 2rem 2rem; position: relative; z-index: 3;
+        }
+        .footer-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .footer-copy { color: var(--slate); font-size: 0.82rem; }
+        .footer-links { display: flex; gap: 2rem; list-style: none; }
+        .footer-links a { color: var(--slate); text-decoration: none; font-size: 0.82rem; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--electric); }
+
+        /* ── Animations ── */
+        .fade-up { opacity: 0; transform: translateY(28px); animation: fadeUp 0.8s ease forwards; }
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+        .d1 { animation-delay: 0.1s; } .d2 { animation-delay: 0.2s; }
+        .d3 { animation-delay: 0.3s; } .d4 { animation-delay: 0.45s; }
+
+        /* ── Responsive ── */
+        @media (max-width: 900px) {
+            .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+            .hero { padding: 6rem 1.5rem 3rem; }
+            .reviews-grid { grid-template-columns: 1fr; }
+            .checklist-wrap { columns: 1; }
+            .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+        }
+        @media (max-width: 600px) {
+            .nav-phone { display: none; }
+            .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
+            h1 { font-size: 2.4rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-bg"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="noise"></div>
+
+    <!-- Nav — logo + phone + CTA only -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">
+                <svg viewBox="0 0 638.03 354.11" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="height:40px;width:auto;">
+                    <defs>
+                        <linearGradient id="ng1" x1="68.82" y1="250.36" x2="513.51" y2="-.16" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#b3b2b3"/><stop offset=".39" stop-color="#cbcbca"/><stop offset=".69" stop-color="#f2f2f2"/><stop offset="1" stop-color="#b3b2b3"/></linearGradient>
+                    </defs>
+                    <g>
+                        <path fill="url(#ng1)" d="M447.88,64.85h-17.99v104.14c0,1.65-1.36,3-3.02,3h-216.9c-1.65,0-3.01-1.35-3.01-3V50.51c0-1.67,1.36-3.01,3.01-3.01h199.12v-20.53h-199.12c-13,0-23.54,10.53-23.54,23.54v118.48c0,13,10.55,23.53,23.54,23.53h216.9c13,0,23.54-10.53,23.54-23.53v-104.55c-.8.27-1.66.41-2.54.41Z"/>
+                        <path fill="url(#ng1)" d="M365.84,99.44h-37.1v-37.1c0-1.32-1.07-2.39-2.39-2.39h-15.83c-1.32,0-2.39,1.07-2.39,2.39v37.1h-37.1c-1.32,0-2.39,1.07-2.39,2.39v15.83c0,1.32,1.07,2.39,2.39,2.39h37.1v37.1c0,1.32,1.07,2.39,2.39,2.39h15.83c1.32,0,2.39-1.07,2.39-2.39v-37.1h37.1c1.32,0,2.39-1.07,2.39-2.39v-15.83c0-1.32-1.07-2.39-2.39-2.39Z"/>
+                        <path fill="url(#ng1)" d="M438.19,234.23h-236.38c-1.58,0-3.09-.65-4.18-1.8l-13.91-14.67c-3.48-3.67-.88-9.73,4.18-9.73h262.23c4.85,0,7.53,5.63,4.47,9.4l-11.94,14.67c-1.09,1.34-2.74,2.13-4.47,2.13Z"/>
+                        <rect fill="url(#ng1)" x="424.73" y="17.08" width="31.17" height="31.17" rx="5.35" ry="5.35"/>
+                        <rect fill="url(#ng1)" x="467.05" y="39.35" width="17.81" height="17.81" rx="3.06" ry="3.06"/>
+                        <rect fill="url(#ng1)" x="470.01" width="24.65" height="24.65" rx="4.23" ry="4.23"/>
+                        <path fill="#fff" d="M65.45,321.16c-.18,16.48-10.29,32.95-32.68,32.95S0,338,0,321.25s10.74-33.59,32.77-33.59,32.86,16.84,32.68,33.5ZM11.83,321.43c.27,10.47,5.92,21.67,20.94,21.67s20.66-11.29,20.85-21.76c.18-10.74-5.83-22.76-20.85-22.76s-21.21,12.11-20.94,22.85Z"/>
+                        <path fill="#fff" d="M87.03,299.86h-20.21v-10.92h52.44v10.92h-20.21v52.8h-12.02v-52.8Z"/>
+                        <path fill="#fff" d="M169.96,352.75v-25.76h-31.32v25.76h-12.02v-63.72h12.02v26.85h31.32v-26.85h11.93v63.72h-11.93Z"/>
+                        <path fill="#fff" d="M240.69,352.66h-47.7v-63.72h47.7v11.65h-35.78v14.66h34.5v11.2h-34.5v14.38h35.78v11.83Z"/>
+                        <path fill="#fff" d="M306.5,352.66h-14.29l-18.57-21.3h-11.56v21.3h-12.02v-63.81c10.1,0,20.21.09,30.31.09,15.02.09,22.94,10.1,22.94,21.12,0,8.74-4.01,17.57-16.11,20.03l19.3,21.76v.82ZM262.08,300.13v20.39h18.3c7.65,0,10.92-5.1,10.92-10.2s-3.37-10.2-10.92-10.2h-18.3Z"/>
+                        <path fill="#fff" d="M368.67,319.89v23.76c-3.28,3.28-6.95,5.77-11.01,7.46-4.07,1.7-8.41,2.55-13.02,2.55-6.37,0-12.03-1.38-16.98-4.14-4.95-2.76-8.8-6.63-11.56-11.61-2.76-4.98-4.14-10.68-4.14-17.11s1.38-12.14,4.14-17.11c2.76-4.98,6.63-8.84,11.61-11.61,4.98-2.76,10.68-4.14,17.11-4.14,8.74,0,16.32,3.16,22.76,9.47l-2.64,2.82c-2.73-2.73-5.81-4.82-9.24-6.28-3.43-1.46-7.05-2.18-10.88-2.18-5.64,0-10.65,1.21-15.02,3.64-4.37,2.43-7.77,5.84-10.2,10.24-2.43,4.4-3.64,9.45-3.64,15.16s1.21,10.67,3.64,15.07c2.43,4.4,5.81,7.83,10.15,10.29,4.34,2.46,9.3,3.69,14.88,3.69,3.82,0,7.51-.7,11.06-2.09,3.55-1.4,6.57-3.34,9.06-5.83v-18.21h-22.94v-3.82h26.85Z"/>
+                        <path fill="#fff" d="M395.07,350.47c-3.76-2.12-6.69-5.11-8.78-8.97-2.09-3.85-3.14-8.27-3.14-13.24v-39.33h4.01v39.33c0,4.25.88,8,2.64,11.24,1.76,3.25,4.22,5.78,7.37,7.6,3.15,1.82,6.77,2.73,10.83,2.73s7.68-.91,10.83-2.73c3.15-1.82,5.61-4.35,7.37-7.6,1.76-3.25,2.64-6.99,2.64-11.24v-39.33h4.01v39.33c0,4.98-1.05,9.39-3.14,13.24-2.09,3.85-5.02,6.84-8.78,8.97-3.76,2.12-8.07,3.19-12.93,3.19s-9.16-1.06-12.93-3.19Z"/>
+                        <path fill="#fff" d="M498.21,288.94l-25.12,38.32v25.4h-4.01v-25.4l-25.03-38.32h4.73l22.3,34.41,22.3-34.41h4.82Z"/>
+                        <path fill="#fff" d="M514.5,350.43c-4.67-2.15-8.31-5.02-10.92-8.6l2.73-2.73c2.06,3.16,5.25,5.73,9.56,7.74,4.31,2,8.8,3,13.47,3,6.43,0,11.52-1.2,15.25-3.6,3.73-2.4,5.6-5.66,5.6-9.79,0-2.61-.65-4.76-1.96-6.46-1.31-1.7-3.49-3.15-6.55-4.37-3.07-1.21-7.45-2.37-13.15-3.46-5.83-1.15-10.42-2.49-13.79-4.01-3.37-1.52-5.81-3.37-7.33-5.55-1.52-2.18-2.28-4.92-2.28-8.19s.99-6.17,2.96-8.69c1.97-2.52,4.76-4.46,8.37-5.83,3.61-1.37,7.78-2.05,12.52-2.05s8.86.77,12.74,2.32c3.88,1.55,7.16,3.81,9.83,6.78l-2.55,2.82c-2.31-2.61-5.2-4.63-8.69-6.05-3.49-1.43-7.3-2.14-11.42-2.14-6.01,0-10.82,1.17-14.43,3.5-3.61,2.34-5.42,5.45-5.42,9.33,0,2.55.64,4.66,1.91,6.33,1.27,1.67,3.37,3.09,6.28,4.28,2.91,1.18,6.95,2.29,12.11,3.32,6.37,1.27,11.33,2.67,14.88,4.19,3.55,1.52,6.1,3.37,7.65,5.55,1.55,2.18,2.32,4.95,2.32,8.28,0,5.34-2.23,9.56-6.69,12.65-4.46,3.09-10.51,4.64-18.16,4.64-5.22,0-10.17-1.08-14.84-3.23Z"/>
+                        <path fill="#fff" d="M563.2,352.66v-63.72h11.93v63.72h-11.93Z"/>
+                        <path fill="#fff" d="M605.8,299.86h-20.21v-10.92h52.44v10.92h-20.21v52.8h-12.02v-52.8Z"/>
+                    </g>
+                </svg>
+            </a>
+            <div class="nav-right">
+                <a href="tel:9722443009" class="nav-phone">📞 (972) 244-3009</a>
+                <a href="#form" class="btn-primary">Book Free Assessment →</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO: headline + stats left, form right -->
+    <section class="hero">
+        <div class="hero-inner">
+            <div>
+                <div class="hero-badge fade-up">Houston &amp; The Woodlands Managed IT</div>
+                <h1 class="fade-up d1">Your IT Provider Doesn't Pick Up the Phone. <span class="accent">We Do.</span></h1>
+                <p class="hero-sub fade-up d2">Flat-rate managed IT for Houston &amp; The Woodlands businesses. No surprise bills. No hold music. No excuses. $100/person/month — everything included.</p>
+                <a href="tel:9722443009" class="hero-phone fade-up d3">📞 (972) 244-3009</a>
+
+                <div class="hero-stats fade-up d4">
+                    <div>
+                        <div class="hero-stat-num">15min</div>
+                        <div class="hero-stat-label">Response</div>
+                    </div>
+                    <div>
+                        <div class="hero-stat-num">24/7</div>
+                        <div class="hero-stat-label">Live Support</div>
+                    </div>
+                    <div>
+                        <div class="hero-stat-num">$100</div>
+                        <div class="hero-stat-label">Per Person/Mo</div>
+                    </div>
+                    <div>
+                        <div class="hero-stat-num">Local</div>
+                        <div class="hero-stat-label">Texas Based</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fade-up d4" id="form">
+                <div class="form-card">
+                    <div class="urgency-bar">🔥 3 onboarding slots left this month</div>
+                    <h2>Get Your Free IT Assessment</h2>
+                    <p class="form-sub">30 minutes. No commitment. We'll tell you if you even need us.</p>
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" placeholder="John Smith">
+                    </div>
+                    <div class="form-group">
+                        <label>Business Name</label>
+                        <input type="text" placeholder="Smith & Associates">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" placeholder="(713) 555-0000">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="john@company.com">
+                    </div>
+                    <div class="form-group">
+                        <label>How many employees?</label>
+                        <select>
+                            <option>Select...</option>
+                            <option>1-10</option>
+                            <option>11-25</option>
+                            <option>26-50</option>
+                            <option>51-100</option>
+                            <option>100+</option>
+                        </select>
+                    </div>
+                    <button class="submit-btn">Book My Free Assessment →</button>
+                    <p class="form-note">No credit card. No obligation. Takes 60 seconds.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TERMINAL — before/after proof -->
+    <section class="terminal-section">
+        <div class="section-label">The Difference</div>
+        <h2>What Changes When You Switch</h2>
+        <div class="terminal">
+            <div class="terminal-bar">
+                <div class="terminal-dot" style="background:#FF5F57"></div>
+                <div class="terminal-dot" style="background:#FEBC2E"></div>
+                <div class="terminal-dot" style="background:#28C840"></div>
+            </div>
+            <div class="terminal-body">
+                <div><span class="comment"># Your old IT setup</span></div>
+                <div><span class="cmd">$</span> check-status <span class="flag">--network</span></div>
+                <div><span class="output">⚠ Firewall outdated (last update: 2019)</span></div>
+                <div><span class="output">⚠ 3 devices missing endpoint protection</span></div>
+                <div><span class="output">✗ Backup failed — last successful: 47 days ago</span></div>
+                <div>&nbsp;</div>
+                <div><span class="comment"># After Other Guys IT</span></div>
+                <div><span class="cmd">$</span> check-status <span class="flag">--all</span></div>
+                <div><span class="success">✓ Firewall current — next-gen threat detection active</span></div>
+                <div><span class="success">✓ All 28 endpoints secured &amp; monitored</span></div>
+                <div><span class="success">✓ Backup verified — 15 min ago</span></div>
+                <div><span class="success">✓ VoIP system: 99.99% uptime</span></div>
+                <div><span class="success">✓ 0 open tickets</span></div>
+                <div>&nbsp;</div>
+                <div><span class="cmd">$</span> <span class="cursor"></span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS — 3 cards -->
+    <section class="reviews-strip">
+        <div class="section-label">What Clients Say</div>
+        <h2>Businesses That Switched</h2>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <blockquote>"We switched from a big-name MSP and the difference was night and day. Our tickets get resolved the same day — sometimes within the hour."</blockquote>
+                <div class="review-author">— Google Review, Verified Client</div>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <blockquote>"I used to dread calling our IT company because I knew I'd be on hold for 20 minutes. Now I text Kareem directly and it's handled."</blockquote>
+                <div class="review-author">— Google Review, Verified Client</div>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <blockquote>"They found security gaps our last provider missed for two years. Set up proper backups, got us HIPAA compliant, and our monthly bill actually went down."</blockquote>
+                <div class="review-author">— Google Review, Verified Client</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CHECKLIST — everything included -->
+    <section class="checklist-section">
+        <h2>Everything Included. <span class="price-inline">$100/Person/Month.</span></h2>
+        <ul class="checklist-wrap">
+            <li><span>✓</span> 24/7 monitoring &amp; helpdesk</li>
+            <li><span>✓</span> Cybersecurity &amp; endpoint protection</li>
+            <li><span>✓</span> Cloud backup &amp; disaster recovery</li>
+            <li><span>✓</span> On-site support when needed</li>
+            <li><span>✓</span> VoIP &amp; network management</li>
+            <li><span>✓</span> HIPAA compliance (healthcare)</li>
+            <li><span>✓</span> Employee security training</li>
+            <li><span>✓</span> Vendor management</li>
+        </ul>
+    </section>
+
+    <!-- BOTTOM CTA -->
+    <div class="bottom-cta">
+        <p>Prefer to talk now?</p>
+        <a href="tel:9722443009">📞 (972) 244-3009</a>
+    </div>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-copy">© 2026 Other Guys IT · The Woodlands &amp; Houston, TX · (972) 244-3009</div>
+            <ul class="footer-links">
+                <li><a href="#">Privacy</a></li>
+                <li><a href="#">Terms</a></li>
+                <li><a href="https://otherguys.tech">otherguys.tech</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+        });
+    </script>
+</body>
+</html>
